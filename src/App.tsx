@@ -73,7 +73,7 @@ function AnimatedHeader() {
   };
 
   return (
-    <div ref={ref} className="box-border content-stretch flex flex-col h-[100vh] items-center justify-between overflow-clip pb-0 pt-0 px-0 relative shrink-0 w-full">
+    <div ref={ref} className="box-border content-stretch flex flex-col h-[100vh] items-center justify-between overflow-clip pb-0 pt-0 px-0 relative shrink-0 w-[100vw]">
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <motion.div 
           className="absolute bg-[rgba(242,221,242,0.28)] inset-0"
@@ -91,7 +91,7 @@ function AnimatedHeader() {
       <div className="bg-[#f5eff5] relative shrink-0 w-full z-10" style={isMenuOpen ? { position: 'sticky', top: 0 } : undefined}>
         <div className="flex flex-row items-center p-[0px]">
           {/* Desktop Menu */}
-          <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[60px] lg:px-[100px] xl:px-[140px] py-4 relative w-full h-fit">
+          <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[60px] lg:px-[100px] xl:px-[140px] py-8 relative w-full h-fit">
             <div className="content-stretch flex flex-col gap-[4px] items-center relative shrink-0">
               <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] lg:text-[28px] text-black text-center">S&E</p>
             </div>
