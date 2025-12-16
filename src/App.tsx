@@ -18,12 +18,18 @@ const GOOGLE_DRIVE_FOLDER_ID = "1gDPI8Dqg2Xwxhc_m5Pcw1CwOhf37HCwi";
 
 // Imágenes de respaldo (fallback) si Google Drive no está configurado
 const FALLBACK_IMAGES = [
-  "https://images.unsplash.com/photo-1658243862459-145b453dd74e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwY291cGxlJTIwcm9tYW50aWN8ZW58MXx8fHwxNzY1ODQwMTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "https://images.unsplash.com/photo-1696238173596-554e92268051?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwY2VyZW1vbnklMjBjaHVyY2h8ZW58MXx8fHwxNzY1OTExMjk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "https://images.unsplash.com/photo-1574624870412-2e82dd0d503c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwY2VsZWJyYXRpb24lMjBmbG93ZXJzfGVufDF8fHx8MTc2NTkxMTI5OHww&ixlib=rb-4.1.0&q=80&w=1080",
-  "https://images.unsplash.com/photo-1763553113332-800519753e40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcmVjZXB0aW9uJTIwZWxlZ2FudHxlbnwxfHx8fDE3NjU4MTg0ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "https://images.unsplash.com/photo-1737498205245-dbb396c262ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcmluZ3MlMjBsb3ZlfGVufDF8fHx8MTc2NTg0NjY4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-  "https://images.unsplash.com/photo-1765615200726-d49f3acb22e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwZGFuY2UlMjByb21hbnRpY3xlbnwxfHx8fDE3NjU4ODgwMjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+  "https://drive.google.com/uc?export=view&id=16Q_xJN8AUAek4YpCdaqLJNlAVQH7gXlZ",
+  "https://drive.google.com/uc?export=view&id=1E-ITVaBMe9ah_maxHcVOdioYcKGO7r4",
+  "https://drive.google.com/uc?export=view&id=1_y8QTJtKRnySCkzHeeRFDZB6yNI73rOr",
+  "https://drive.google.com/uc?export=view&id=1aOV6w5Qc0urp-B2R4XaDaQb6IMu_C3GG",
+  "https://drive.google.com/uc?export=view&id=1hj5mScQbjZkfXVeoLFNkcX0XvpzCtvVK",
+  "https://drive.google.com/uc?export=view&id=1moJV7iIkTedMFSgQRep0Vn9GMhpP8ycA",
+  "https://drive.google.com/uc?export=view&id=1qBjhgGAUfUOwxbTTFR1SYns1cet1GT2R",
+  "https://drive.google.com/uc?export=view&id=1rTdjN7jwXGNF6Qo8B9UFEPTsuJrzyF6C",
+  "https://drive.google.com/uc?export=view&id=1rbgAYQpZaTj9YS2fXSy93ohR7BsKAAWY",
+  "https://drive.google.com/uc?export=view&id=1sXa9VYfUbTTKiE6OfqlRH8et5Rnli62T",
+  "https://drive.google.com/uc?export=view&id=1tIsvJeVesI1khweXKoBdeRGpeTZaasoY",
+  "https://drive.google.com/uc?export=view&id=1yTptSdR_NbwI3UmCEKzlUizWjSmmRGHm"
 ];
 
 function AnimatedHeader() {
