@@ -73,7 +73,7 @@ function AnimatedHeader() {
   };
 
   return (
-    <div ref={ref} className="box-border content-stretch flex flex-col h-[100vh] items-center justify-between overflow-clip pb-0 pt-0 px-0 relative shrink-0 w-[100vw]">
+    <div ref={ref} className="box-border content-stretch flex flex-col h-[100vh] items-center justify-between overflow-clip pb-0 pt-0 px-0 relative shrink-0 w-full">
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <motion.div 
           className="absolute bg-[rgba(242,221,242,0.28)] inset-0"
