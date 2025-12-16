@@ -14,24 +14,53 @@ const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwO6glO7
 // ID de la carpeta de Google Drive que contiene las imágenes del carrousel
 // Para obtenerlo: abre la carpeta en Google Drive y copia el ID de la URL
 // URL ejemplo: https://drive.google.com/drive/folders/1ABC123XYZ... -> el ID es "1ABC123XYZ..."
-const GOOGLE_DRIVE_FOLDER_ID = "1gDPI8Dqg2Xwxhc_m5Pcw1CwOhf37HCwi";
+const GOOGLE_DRIVE_FOLDER_ID = "1gDPI8Dqg2Xwxhc_m5PcwOhf37HCwi";
 
 // Imágenes de respaldo (fallback) si Google Drive no está configurado
 const FALLBACK_IMAGES = [
-  "https://drive.google.com/uc?export=view&id=16Q_xJN8AUAek4YpCdaqLJNlAVQH7gXlZ",
-  "https://drive.google.com/uc?export=view&id=1E-ITVaBMe9ah_maxHcVOdioYcKGO7r4",
-  "https://drive.google.com/uc?export=view&id=1_y8QTJtKRnySCkzHeeRFDZB6yNI73rOr",
-  "https://drive.google.com/uc?export=view&id=1aOV6w5Qc0urp-B2R4XaDaQb6IMu_C3GG",
-  "https://drive.google.com/uc?export=view&id=1hj5mScQbjZkfXVeoLFNkcX0XvpzCtvVK",
-  "https://drive.google.com/uc?export=view&id=1moJV7iIkTedMFSgQRep0Vn9GMhpP8ycA",
-  "https://drive.google.com/uc?export=view&id=1qBjhgGAUfUOwxbTTFR1SYns1cet1GT2R",
-  "https://drive.google.com/uc?export=view&id=1rTdjN7jwXGNF6Qo8B9UFEPTsuJrzyF6C",
-  "https://drive.google.com/uc?export=view&id=1rbgAYQpZaTj9YS2fXSy93ohR7BsKAAWY",
-  "https://drive.google.com/uc?export=view&id=1sXa9VYfUbTTKiE6OfqlRH8et5Rnli62T",
-  "https://drive.google.com/uc?export=view&id=1tIsvJeVesI1khweXKoBdeRGpeTZaasoY",
-  "https://drive.google.com/uc?export=view&id=1yTptSdR_NbwI3UmCEKzlUizWjSmmRGHm"
-];
+"src/assets/carousel/IMG_9318.jpg",
+"src/assets/carousel/IMG_9393.JPG",
+"src/assets/carousel/IMG_9714.JPG",
+"src/assets/carousel/IMG_9715.jpg",
+"src/assets/carousel/IMG_9716.jpg",
+"src/assets/carousel/IMG_9717.jpg",
+"src/assets/carousel/IMG_9718.jpg",
+"src/assets/carousel/IMG_9719.jpg",
+"src/assets/carousel/IMG_9720.jpg",
+"src/assets/carousel/IMG_9721.jpg",
+"src/assets/carousel/IMG_9722.jpg",
+"src/assets/carousel/IMG_9724.jpg",
+"src/assets/carousel/IMG_9725.jpg",
+"src/assets/carousel/IMG_9726.JPG",
+"src/assets/carousel/IMG-20251216-WA0040.jpg",
+"src/assets/carousel/IMG-20251216-WA0048.jpg",
+"src/assets/carousel/IMG-20251216-WA0053.jpg",
+"src/assets/carousel/IMG-20251216-WA0055.jpg",
+"src/assets/carousel/IMG-20251216-WA0057.jpg",
+"src/assets/carousel/IMG-20251216-WA0059.jpg",
+"src/assets/carousel/IMG-20251216-WA0061.jpg",
+"src/assets/carousel/IMG-20251216-WA0063.jpg",
+"src/assets/carousel/IMG-20251216-WA0065.jpg",
+"src/assets/carousel/IMG-20251216-WA0067.jpg",
+"src/assets/carousel/IMG-20251216-WA0070.jpg",
+"src/assets/carousel/IMG-20251216-WA0071.jpg",
+"src/assets/carousel/IMG-20251216-WA0073.jpg",
+"src/assets/carousel/IMG-20251216-WA0075.jpg",
+"src/assets/carousel/IMG-20251216-WA0077.jpg",
+"src/assets/carousel/IMG-20251216-WA0079.jpg",
+"src/assets/carousel/IMG-20251216-WA0081.jpg",
+"src/assets/carousel/IMG-20251216-WA0083.jpg",
+"src/assets/carousel/IMG-20251216-WA0085.jpg",
+"src/assets/carousel/IMG-20251216-WA0087.jpg",
+"src/assets/carousel/IMG-20251216-WA0089.jpg",
+"src/assets/carousel/IMG-20251216-WA0091.jpg",
+"src/assets/carousel/IMG-20251216-WA0093.jpg",
+"src/assets/carousel/IMG-20251216-WA0095.jpg",
+"src/assets/carousel/IMG-20251216-WA0097.jpg",
+"src/assets/carousel/IMG-20251216-WA0099.jpg",
+"src/assets/carousel/IMG-20251216-WA0101.jpg"
 
+];
 function AnimatedHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -211,35 +240,52 @@ function PhotoCarousel() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [carouselImages, setCarouselImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const timerRef = useRef<number | null>(null);
 
-  // Cargar imágenes locales desde assets/carousel (recursivo, distintos formatos)
+  // Cargar imágenes desde Google Apps Script al montar el componente
   useEffect(() => {
-    const importAll = (r: __WebpackModuleApi.RequireContext) => r.keys().map(r);
-    
-    try {
-      const images = importAll(
-        require.context(
-          './assets/carousel', // carpeta base
-          true,                // recursivo
-          /\.(png|jpe?g|gif|webp|svg)$/i // todos los formatos
-        )
-      );
-      setCarouselImages(images);
-    } catch (error) {
-      console.error("Error cargando imágenes locales del carrusel", error);
-    } finally {
-      setIsLoading(false);
-    }
+    const fetchImages = async () => {
+      // Si el ID de carpeta no está configurado, usar imágenes de respaldo
+      if (GOOGLE_DRIVE_FOLDER_ID === "TU_FOLDER_ID_AQUI") {
+        console.log("Usando imágenes de respaldo - Google Drive no configurado");
+        setCarouselImages(FALLBACK_IMAGES);
+        setHasError(false);
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`${GOOGLE_APPS_SCRIPT_URL}?action=getImages&folderId=${GOOGLE_DRIVE_FOLDER_ID}`);
+        const data = await response.json();
+        
+        if (data.success && data.images && data.images.length > 0) {
+          setCarouselImages(data.images);
+          setHasError(false);
+        } else {
+          console.log("No se encontraron imágenes, usando imágenes de respaldo");
+          setCarouselImages(FALLBACK_IMAGES);
+          setHasError(false);
+        }
+      } catch (error) {
+        console.log("Error al cargar imágenes de Google Drive, usando imágenes de respaldo");
+        setCarouselImages(FALLBACK_IMAGES);
+        setHasError(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchImages();
   }, []);
 
   const nextSlide = () => {
-    if (!carouselImages.length) return;
+    if (carouselImages.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
   };
 
   const prevSlide = () => {
-    if (!carouselImages.length) return;
+    if (carouselImages.length === 0) return;
     setCurrentIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
   };
 
@@ -249,27 +295,46 @@ function PhotoCarousel() {
 
   // Auto-scroll cada 12 segundos
   useEffect(() => {
-    if (isAutoPlaying && carouselImages.length > 0) {
-      timerRef.current = setInterval(nextSlide, 12000);
+    if (isAutoPlaying) {
+      timerRef.current = setInterval(() => {
+        nextSlide();
+      }, 12000);
     }
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [isAutoPlaying, carouselImages]);
 
-  const handlePrevClick = () => { setIsAutoPlaying(false); prevSlide(); };
-  const handleNextClick = () => { setIsAutoPlaying(false); nextSlide(); };
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [isAutoPlaying, currentIndex]);
+
+  const handlePrevClick = () => {
+    setIsAutoPlaying(false);
+    prevSlide();
+  };
+
+  const handleNextClick = () => {
+    setIsAutoPlaying(false);
+    nextSlide();
+  };
 
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 0.95]);
 
+  // Calcular los índices de las imágenes visibles
   const getVisibleImages = () => {
-    return [-1, 0, 1].map((i) => ({
-      index: (currentIndex + i + carouselImages.length) % carouselImages.length,
-      offset: i
-    }));
+    const images = [];
+    for (let i = -1; i <= 1; i++) {
+      const index = (currentIndex + i + carouselImages.length) % carouselImages.length;
+      images.push({ index, offset: i });
+    }
+    return images;
   };
 
   return (
@@ -279,6 +344,7 @@ function PhotoCarousel() {
       className="relative shrink-0 w-full py-[80px] md:py-[120px] overflow-visible z-20 -mb-[60px] md:-mb-[100px] bg-gradient-to-b from-white via-[#faf7fa] to-white"
       style={{ opacity, scale }}
     >
+      {/* Estado de carga */}
       {isLoading && (
         <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center">
           <div className="flex flex-col items-center gap-4">
@@ -290,48 +356,129 @@ function PhotoCarousel() {
         </div>
       )}
 
+      {/* Carrousel - se muestra cuando no está cargando y hay imágenes */}
       {!isLoading && carouselImages.length > 0 && (
         <>
-          <div className="relative w-full h-[200px] md:h-[600px] flex items-center justify-center">
-            <AnimatePresence initial={false} mode="popLayout">
-              {getVisibleImages().map(({ index, offset }) => (
-                <motion.div
-                  key={index}
-                  className="absolute"
-                  initial={{ x: `${offset * 100}%`, scale: offset === 0 ? 1 : 0.85, zIndex: offset === 0 ? 10 : 5 }}
-                  animate={{ x: `${offset * 100}%`, scale: offset === 0 ? 1 : 0.85, zIndex: offset === 0 ? 10 : 5 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ width: offset === 0 ? '90vw' : '75vw', maxWidth: offset === 0 ? '1400px' : '1000px' }}
-                >
-                  <div className="relative w-full h-[600px] rounded-[16px] overflow-hidden shadow-2xl"
-                    style={{ filter: offset === 0 ? 'none' : 'brightness(0.7)' }}>
-                    <img src={carouselImages[index]} alt={`Foto ${index + 1}`} className="w-full h-full object-cover" loading="lazy"/>
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+          <div className="relative w-full h-[200px] md:h-[600px]">
+            {/* Contenedor de imágenes */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <AnimatePresence initial={false} mode="popLayout">
+                {getVisibleImages().map(({ index, offset }) => (
+                  <motion.div
+                    key={index}
+                    className="absolute"
+                    initial={{
+                      x: `${offset * 100}%`,
+                      scale: offset === 0 ? 1 : 0.85,
+                      opacity: 1,
+                      zIndex: offset === 0 ? 10 : 5,
+                    }}
+                    animate={{
+                      x: `${offset * 100}%`,
+                      scale: offset === 0 ? 1 : 0.85,
+                      opacity: 1,
+                      zIndex: offset === 0 ? 10 : 5,
+                    }}
+                    exit={{
+                      opacity: 0,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    style={{
+                      width: offset === 0 ? '90vw' : '75vw',
+                      maxWidth: offset === 0 ? '1400px' : '1000px',
+                    }}
+                    className="md:block hidden"
+                  >
+                    <div 
+                      className="relative w-full h-[600px] rounded-[16px] overflow-hidden shadow-2xl"
+                      style={{
+                        filter: offset === 0 ? 'none' : 'brightness(0.7)',
+                      }}
+                    >
+                      <img
+                        src={carouselImages[index]}
+                        alt={`Foto ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* Vista móvil */}
+              <div className="md:hidden relative w-full h-full flex items-center justify-center">
+                <AnimatePresence initial={false} mode="popLayout">
+                  {getVisibleImages().map(({ index, offset }) => (
+                    <motion.div
+                      key={index}
+                      className="absolute"
+                      initial={{
+                        x: `${offset * 90}%`,
+                        scale: offset === 0 ? 1 : 0.8,
+                        opacity: offset === 0 ? 1 : 0.5,
+                        zIndex: offset === 0 ? 10 : 5,
+                      }}
+                      animate={{
+                        x: `${offset * 90}%`,
+                        scale: offset === 0 ? 1 : 0.8,
+                        opacity: offset === 0 ? 1 : 0.5,
+                        zIndex: offset === 0 ? 10 : 5,
+                      }}
+                      exit={{
+                        opacity: 0,
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      style={{
+                        width: offset === 0 ? '90%' : '70%',
+                      }}
+                    >
+                      <div 
+                        className="relative w-full h-[400px] rounded-[12px] overflow-hidden shadow-xl"
+                        style={{
+                          filter: offset === 0 ? 'none' : 'brightness(0.6)',
+                        }}
+                      >
+                        <img
+                          src={carouselImages[index]}
+                          alt={`Foto ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </div>
 
             {/* Botones de navegación */}
             <motion.button
               onClick={handlePrevClick}
-              className="absolute left-[40px] top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white p-4 rounded-full shadow-lg cursor-pointer transition-all"
+              className="absolute left-[10px] md:left-[40px] top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white p-3 md:p-4 rounded-full shadow-lg cursor-pointer transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Foto anterior"
             >
-              <ChevronLeft className="w-6 h-6 text-[#452746]" />
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#452746]" />
             </motion.button>
 
             <motion.button
               onClick={handleNextClick}
-              className="absolute right-[40px] top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white p-4 rounded-full shadow-lg cursor-pointer transition-all"
+              className="absolute right-[10px] md:right-[40px] top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white p-3 md:p-4 rounded-full shadow-lg cursor-pointer transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Siguiente foto"
             >
-              <ChevronRight className="w-6 h-6 text-[#452746]" />
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#452746]" />
             </motion.button>
 
             {/* Indicadores de posición */}
@@ -339,7 +486,10 @@ function PhotoCarousel() {
               {carouselImages.map((_, index) => (
                 <motion.button
                   key={index}
-                  onClick={() => { setIsAutoPlaying(false); goToSlide(index); }}
+                  onClick={() => {
+                    setIsAutoPlaying(false);
+                    goToSlide(index);
+                  }}
                   className="cursor-pointer"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -347,19 +497,35 @@ function PhotoCarousel() {
                 >
                   <motion.div
                     className="rounded-full"
-                    animate={{ width: currentIndex === index ? '32px' : '8px', height: '8px', backgroundColor: currentIndex === index ? '#452746' : 'rgba(69,39,70,0.3)' }}
+                    animate={{
+                      width: currentIndex === index ? '32px' : '8px',
+                      height: '8px',
+                      backgroundColor: currentIndex === index ? '#452746' : 'rgba(69, 39, 70, 0.3)',
+                    }}
                     transition={{ duration: 0.3 }}
                   />
                 </motion.button>
               ))}
             </div>
           </div>
+
+          {/* Texto decorativo */}
+          <motion.div
+            className="text-center mt-[40px] md:mt-[60px] px-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <p className="font-['Roboto_Slab',serif] font-light italic text-[#452746] text-[32px] md:text-[44px] lg:text-[50px]">
+              Nuestros momentos
+            </p>
+          </motion.div>
         </>
       )}
     </motion.div>
   );
 }
-
 
 function CeremonySection() {
   const ref = useRef<HTMLDivElement>(null);
