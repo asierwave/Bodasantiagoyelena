@@ -16,44 +16,50 @@ const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwO6glO7
 // URL ejemplo: https://drive.google.com/drive/folders/1ABC123XYZ... -> el ID es "1ABC123XYZ..."
 const GOOGLE_DRIVE_FOLDER_ID = "1gDPI8Dqg2Xwxhc_m5PcwOhf37HCwi";
 
-// Imágenes de respaldo (fallback) si Google Drive no está configurado
-const FALLBACK_IMAGES = [
-"/assets/carousel/IMG_9318.jpg",
-"/assets/carousel/IMG_9720.jpg",
-"/assets/carousel/IMG_9721.jpg",
-"/assets/carousel/IMG_9722.jpg",
-"/assets/carousel/IMG_9724.jpg",
-"/assets/carousel/IMG_9725.jpg",
-"/assets/carousel/IMG_9726.JPG",
-"/assets/carousel/IMG-20251216-WA0040.jpg",
-"/assets/carousel/IMG-20251216-WA0048.jpg",
-"/assets/carousel/IMG-20251216-WA0053.jpg",
-"/assets/carousel/IMG-20251216-WA0055.jpg",
-"/assets/carousel/IMG-20251216-WA0057.jpg",
-"/assets/carousel/IMG-20251216-WA0059.jpg",
-"/assets/carousel/IMG-20251216-WA0061.jpg",
-"/assets/carousel/IMG-20251216-WA0063.jpg",
-"/assets/carousel/IMG-20251216-WA0065.jpg",
-"/assets/carousel/IMG-20251216-WA0067.jpg",
-"/assets/carousel/IMG-20251216-WA0070.jpg",
-"/assets/carousel/IMG-20251216-WA0071.jpg",
-"/assets/carousel/IMG-20251216-WA0073.jpg",
-"/assets/carousel/IMG-20251216-WA0075.jpg",
-"/assets/carousel/IMG-20251216-WA0077.jpg",
-"/assets/carousel/IMG-20251216-WA0079.jpg",
-"/assets/carousel/IMG-20251216-WA0081.jpg",
-"/assets/carousel/IMG-20251216-WA0083.jpg",
-"/assets/carousel/IMG-20251216-WA0085.jpg",
-"/assets/carousel/IMG-20251216-WA0087.jpg",
-"/assets/carousel/IMG-20251216-WA0089.jpg",
-"/assets/carousel/IMG-20251216-WA0091.jpg",
-"/assets/carousel/IMG-20251216-WA0093.jpg",
-"/assets/carousel/IMG-20251216-WA0095.jpg",
-"/assets/carousel/IMG-20251216-WA0097.jpg",
-"/assets/carousel/IMG-20251216-WA0099.jpg",
-"/assets/carousel/IMG-20251216-WA0101.jpg"
+// Importar imágenes explícitamente
+import img1 from "./assets/carousel/IMG_9318.jpg";
+import img2 from "./assets/carousel/IMG_9720.jpg";
+import img3 from "./assets/carousel/IMG_9721.jpg";
+import img4 from "./assets/carousel/IMG_9722.jpg";
+import img5 from "./assets/carousel/IMG_9724.jpg";
+import img6 from "./assets/carousel/IMG_9725.jpg";
+import img7 from "./assets/carousel/IMG_9726.JPG";
+import img8 from "./assets/carousel/IMG-20251216-WA0040.jpg";
+import img9 from "./assets/carousel/IMG-20251216-WA0048.jpg";
+import img10 from "./assets/carousel/IMG-20251216-WA0053.jpg";
+import img11 from "./assets/carousel/IMG-20251216-WA0055.jpg";
+import img12 from "./assets/carousel/IMG-20251216-WA0057.jpg";
+import img13 from "./assets/carousel/IMG-20251216-WA0059.jpg";
+import img14 from "./assets/carousel/IMG-20251216-WA0061.jpg";
+import img15 from "./assets/carousel/IMG-20251216-WA0063.jpg";
+import img16 from "./assets/carousel/IMG-20251216-WA0065.jpg";
+import img17 from "./assets/carousel/IMG-20251216-WA0067.jpg";
+import img18 from "./assets/carousel/IMG-20251216-WA0070.jpg";
+import img19 from "./assets/carousel/IMG-20251216-WA0071.jpg";
+import img20 from "./assets/carousel/IMG-20251216-WA0073.jpg";
+import img21 from "./assets/carousel/IMG-20251216-WA0075.jpg";
+import img22 from "./assets/carousel/IMG-20251216-WA0077.jpg";
+import img23 from "./assets/carousel/IMG-20251216-WA0079.jpg";
+import img24 from "./assets/carousel/IMG-20251216-WA0081.jpg";
+import img25 from "./assets/carousel/IMG-20251216-WA0083.jpg";
+import img26 from "./assets/carousel/IMG-20251216-WA0085.jpg";
+import img27 from "./assets/carousel/IMG-20251216-WA0087.jpg";
+import img28 from "./assets/carousel/IMG-20251216-WA0089.jpg";
+import img29 from "./assets/carousel/IMG-20251216-WA0091.jpg";
+import img30 from "./assets/carousel/IMG-20251216-WA0093.jpg";
+import img31 from "./assets/carousel/IMG-20251216-WA0095.jpg";
+import img32 from "./assets/carousel/IMG-20251216-WA0097.jpg";
+import img33 from "./assets/carousel/IMG-20251216-WA0099.jpg";
+import img34 from "./assets/carousel/IMG-20251216-WA0101.jpg";
 
+// Reemplazar FALLBACK_IMAGES por el array de imports
+const FALLBACK_IMAGES = [
+  img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
+  img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
+  img21, img22, img23, img24, img25, img26, img27, img28, img29, img30,
+  img31, img32, img33, img34
 ];
+
 function AnimatedHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
