@@ -160,26 +160,26 @@ function AnimatedHeader() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="md:hidden overflow-hidden bg-[#000000] border-t border-[#452746]/10 z-50"
+              className="md:hidden overflow-hidden bg-[#f5f5f5] border-t border-[#452746]/10 z-50"
             >
               <div className="flex flex-col gap-3 px-[20px] py-[16px]">
                 <div 
                   className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
                   onClick={() => scrollToSection("carousel")}
                 >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-white text-center">Nuestros momentos</p>
+                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">Nuestros momentos</p>
                 </div>
                 <div 
                   className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
                   onClick={() => scrollToSection("ceremonia")}
                 >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-white text-center">La ceremonia</p>
+                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">La ceremonia</p>
                 </div>
                 <div 
                   className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
                   onClick={() => scrollToSection("rsvp")}
                 >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-white text-center">Confirma tu asistencia</p>
+                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">Confirma tu asistencia</p>
                 </div>
                 <div className="flex flex-col gap-2">
                   <a 
