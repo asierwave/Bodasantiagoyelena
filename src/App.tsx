@@ -1,7 +1,7 @@
 import { useState, useRef, FormEvent, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { Menu, X, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import imgFrame2 from "./assets/fotoprincipal.jpeg";
 import imgFrame3 from "./assets/fotoiglesia.jpeg";
 
@@ -206,7 +206,7 @@ function PhotoCarousel() {
   const [carouselImages, setCarouselImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<number | null>(null);
 
   // Cargar imágenes desde Google Apps Script al montar el componente
   useEffect(() => {
