@@ -88,30 +88,30 @@ function AnimatedHeader() {
         {/* Degradado para opacar ligeramente la imagen */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
       </div>
-      <div className="bg-[#f5eff5] relative shrink-0 w-full z-10" style={isMenuOpen ? { position: 'sticky', top: 0 } : undefined}>
+      <div className="bg-[#000000] relative shrink-0 w-full z-10 pt-[4px]" style={isMenuOpen ? { position: 'sticky', top: 0 } : undefined}>
         <div className="flex flex-row items-center p-[0px]">
           {/* Desktop Menu */}
           <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[60px] lg:px-[100px] xl:px-[140px] py-8 relative w-full h-fit">
             <div className="content-stretch flex flex-col gap-[4px] items-center relative shrink-0">
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] lg:text-[28px] text-black text-center">S&E</p>
+              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] lg:text-[28px] text-[#f5f5f5]/60 text-center">S&E</p>
             </div>
             <div 
               className="cursor-pointer group"
               onClick={() => scrollToSection("carousel")}
             >
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-black text-center transition-all duration-300 group-hover:underline">Nuestros momentos</p>
+              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Nuestros momentos</p>
             </div>
             <div 
               className="cursor-pointer group"
               onClick={() => scrollToSection("ceremonia")}
             >
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-black text-center transition-all duration-300 group-hover:underline">La ceremonia</p>
+              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">La ceremonia</p>
             </div>
             <div 
               className="cursor-pointer group"
               onClick={() => scrollToSection("rsvp")}
             >
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-black text-center transition-all duration-300 group-hover:underline">Confirma tu asistencia</p>
+              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Confirma tu asistencia</p>
             </div>
             <div className="flex gap-2 items-center">
               <a 
@@ -140,7 +140,7 @@ function AnimatedHeader() {
           {/* Mobile Menu */}
           <div className={`md:hidden flex items-center justify-between px-[20px] relative w-full ${isMenuOpen ? 'py-0' : 'py-[8px]'}`}>
             <div className="content-stretch flex flex-col gap-[4px] items-center relative">
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[22px] text-black text-center">S&E</p>
+              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[22px] text-[#f5f5f5] text-center">S&E</p>
             </div>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -160,26 +160,26 @@ function AnimatedHeader() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="md:hidden overflow-hidden bg-[#f5eff5] border-t border-[#452746]/10 z-50"
+              className="md:hidden overflow-hidden bg-[#f5eff5]/40 border-t border-[#452746]/10 z-50"
             >
               <div className="flex flex-col gap-3 px-[20px] py-[16px]">
                 <div 
                   className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
                   onClick={() => scrollToSection("carousel")}
                 >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">Nuestros momentos</p>
+                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-[#f5f5f5] text-center">Nuestros momentos</p>
                 </div>
                 <div 
                   className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
                   onClick={() => scrollToSection("ceremonia")}
                 >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">La ceremonia</p>
+                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-[#f5f5f5] text-center">La ceremonia</p>
                 </div>
                 <div 
                   className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
                   onClick={() => scrollToSection("rsvp")}
                 >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">Confirma tu asistencia</p>
+                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-[#f5f5f5] text-center">Confirma tu asistencia</p>
                 </div>
                 <div className="flex flex-col gap-2">
                   <a 
