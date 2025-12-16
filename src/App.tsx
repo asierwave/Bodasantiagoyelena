@@ -17,13 +17,6 @@ const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwO6glO7
 const GOOGLE_DRIVE_FOLDER_ID = "1gDPI8Dqg2Xwxhc_m5PcwOhf37HCwi";
 
 // Importar imágenes explícitamente
-import img1 from "./assets/carousel/IMG_9318.jpg";
-import img2 from "./assets/carousel/IMG_9720.jpg";
-import img3 from "./assets/carousel/IMG_9721.jpg";
-import img4 from "./assets/carousel/IMG_9722.jpg";
-import img5 from "./assets/carousel/IMG_9724.jpg";
-import img6 from "./assets/carousel/IMG_9725.jpg";
-import img7 from "./assets/carousel/IMG_9726.JPG";
 import img8 from "./assets/carousel/IMG-20251216-WA0040.jpg";
 import img9 from "./assets/carousel/IMG-20251216-WA0048.jpg";
 import img10 from "./assets/carousel/IMG-20251216-WA0053.jpg";
