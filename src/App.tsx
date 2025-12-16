@@ -9,7 +9,7 @@ const GOOGLE_MAPS_ADDRESS = "P.º de la Virgen del Puerto, 4, Centro, 28013 Madr
 const GOOGLE_MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(GOOGLE_MAPS_ADDRESS)}`;
 const WHATSAPP_URL_SANTI = "https://wa.me/34637101282";
 const WHATSAPP_URL_ELENA = "https://wa.me/34619593934";
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxPz-t0Apz8xsw6B10T05ioZeQUhc5V5FSmN-Nlq8YPoTAHkU9N64JVisFsG-hTPGyniQ/exec";
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwO6glO7G3i3ikg_HVs_5A3a-F5bJmhGZ6UBLChFc6ch_uoVblv--mcX1AgtJRtigUIVw/exec";
 
 // ID de la carpeta de Google Drive que contiene las imágenes del carrousel
 // Para obtenerlo: abre la carpeta en Google Drive y copia el ID de la URL
