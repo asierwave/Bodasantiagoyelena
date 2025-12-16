@@ -73,7 +73,7 @@ function AnimatedHeader() {
   };
 
   return (
-    <div ref={ref} className="box-border content-stretch flex flex-col overflow-hidden  h-[100vh] items-center justify-between overflow-clip pb-0 pt-0 px-0 relative shrink-0 w-[100vw]">
+    <div ref={ref} className="box-border content-stretch flex flex-col h-[100vh] items-center justify-between overflow-clip pb-0 pt-0 px-0 relative shrink-0 w-[100vw]">
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <motion.div 
           className="absolute bg-[rgba(242,221,242,0.28)] inset-0"
@@ -330,12 +330,15 @@ function PhotoCarousel() {
   };
 
   return (
-    <motion.div
-      id="carousel"
-      ref={ref}
-      className="relative shrink-0 w-full py-[80px] md:py-[120px] overflow-visible z-20 -mb-[60px] md:-mb-[100px] bg-gradient-to-b from-white via-[#faf7fa] to-white"
-      style={{ opacity, scale }}
-    >
+<motion.div
+  id="carousel"
+  ref={ref}
+  className="relative w-full py-[80px] md:py-[120px]
+             overflow-x-hidden overflow-y-visible
+             z-20 -mb-[60px] md:-mb-[100px]
+             bg-gradient-to-b from-white via-[#faf7fa] to-white"
+>
+
       {/* Estado de carga */}
       {isLoading && (
         <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center">
@@ -353,7 +356,7 @@ function PhotoCarousel() {
         <>
           <div className="relative w-full h-[200px] md:h-[600px]">
             {/* Contenedor de imágenes */}
-            <div className="relative w-full h-full flex items-center justify-center">
+            <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
               <AnimatePresence initial={false} mode="popLayout">
                 {getVisibleImages().map(({ index, offset }) => (
                   <motion.div
@@ -379,7 +382,7 @@ function PhotoCarousel() {
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     style={{
-                      width: offset === 0 ? '90vw' : '75vw',
+                      width: offset === 0 ? '90%' : '75%',
                       maxWidth: offset === 0 ? '1400px' : '1000px',
                     }}
                     className="md:block hidden"
