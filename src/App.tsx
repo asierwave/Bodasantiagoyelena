@@ -89,7 +89,7 @@ function AnimatedHeader() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
       </div>
       <div className="bg-[#f5eff5] relative shrink-0 w-full z-10" style={isMenuOpen ? { position: 'sticky', top: 0 } : undefined}>
-        <div className="flex flex-row items-center size-full p-[0px]">
+        <div className="flex flex-row items-center p-[0px]">
           {/* Desktop Menu */}
           <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[60px] lg:px-[100px] xl:px-[140px] py-4 relative w-full h-fit">
             <div className="content-stretch flex flex-col gap-[4px] items-center relative shrink-0">
