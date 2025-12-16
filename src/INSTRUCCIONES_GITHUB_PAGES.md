@@ -19,7 +19,8 @@ git add .
 git commit -m "Configuración inicial de la web de la boda"
 
 # Conecta con tu repositorio de GitHub (reemplaza con tu URL)
-git remote add origin https://github.com/TU-USUARIO/TU-REPO.git
+git remote add origin https://github.com/asierwave/Bodasantiagoyelena
+
 
 # Sube a GitHub
 git push -u origin main
