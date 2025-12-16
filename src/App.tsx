@@ -2,8 +2,8 @@ import { useState, useRef, FormEvent, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { Menu, X, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "sonner@2.0.3";
-import imgFrame2 from "figma:asset/69019d0db25911b260b132ec2d0448250324bfe2.png";
-import imgFrame3 from "figma:asset/95586d9bf2374a8f9d03b755052bfc183c1ee8e4.png";
+import imgFrame2 from "./assets/fotoprincipal.jpeg";
+import imgFrame3 from "./assets/fotoiglesia.jpeg";
 
 const GOOGLE_MAPS_ADDRESS = "P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid";
 const GOOGLE_MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(GOOGLE_MAPS_ADDRESS)}`;

@@ -7,7 +7,7 @@ export default defineConfig({
   // Para GitHub Pages: cambia 'nombre-repo' por el nombre de tu repositorio
   // Ejemplo: si tu repo es "boda-santi-elena", usa: base: '/boda-santi-elena/'
   // Si usas dominio personalizado, usa: base: '/'
-  base: './',
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
