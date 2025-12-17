@@ -45,7 +45,15 @@ import img32 from "./assets/carousel/IMG-20251216-WA0097.jpg";
 import img33 from "./assets/carousel/IMG-20251216-WA0099.jpg";
 import img34 from "./assets/carousel/IMG-20251216-WA0101.jpg";
 
+//Si añades nuevas fotos al carousel, esta sería la 35, la siguiente la img36
+//import img35 from "./assets/carousel/NOMBREDELARCHIVO.EXTENSION";
+
+
 // Reemplazar FALLBACK_IMAGES por el array de imports
+
+//También tendrías que añadir la nueva imagen importada al array de aquí abajo
+//,img35 en el ejemplo que ponemos arriba
+
 const FALLBACK_IMAGES = [
   img8, img9, img10,
   img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
