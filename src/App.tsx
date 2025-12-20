@@ -224,7 +224,7 @@ function AnimatedHeader() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        >Santiago & Elena</motion.p>
+        >Elena & Santi</motion.p>
         <motion.p 
           className="relative shrink-0 text-neutral-100 text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -942,7 +942,7 @@ function Footer() {
       transition={{ duration: 0.8 }}
     >
       <div className="content-stretch flex flex-col gap-[6px] items-center relative shrink-0">
-        <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] md:text-[28px] text-black text-center">S&E 2026</p>
+        <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] md:text-[28px] text-black text-center">E&S 2026</p>
       </div>
     </motion.div>
   );
