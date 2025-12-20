@@ -102,7 +102,7 @@ function AnimatedHeader() {
           {/* Desktop Menu */}
           <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[60px] lg:px-[100px] xl:px-[140px] py-8 relative w-full h-fit">
             <div className="content-stretch flex flex-col gap-[4px] items-center relative shrink-0">
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] lg:text-[28px] text-[#f5f5f5]/60 text-center">S&E</p>
+              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] lg:text-[28px] text-[#f5f5f5]/60 text-center">E&S</p>
             </div>
             <div 
               className="cursor-pointer group"
@@ -230,7 +230,7 @@ function AnimatedHeader() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        >12-04-2026</motion.p>
+        >11-04-2026</motion.p>
       </motion.div>
     </div>
   );
