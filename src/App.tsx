@@ -149,7 +149,7 @@ function AnimatedHeader() {
           {/* Mobile Menu */}
           <div className={`md:hidden flex items-center justify-between px-[20px] relative w-full ${isMenuOpen ? 'py-0' : 'py-[8px]'}`}>
             <div className="content-stretch flex flex-col gap-[4px] items-center relative">
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[22px] text-[#f5f5f5] text-center">S&E</p>
+              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[22px] text-[#f5f5f5] text-center">E&S</p>
             </div>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
