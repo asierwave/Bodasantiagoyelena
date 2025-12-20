@@ -1,9 +1,9 @@
 
-  # Boda Santiago y Elena
+  # Boda Elena y Santi
 
   ESTO NO, SANTIAGO
 
-  This is a code bundle for Boda Santiago y Elena. The original project is available at https://www.figma.com/design/nH0SX3O0nrJzEuCIhM9syW/Boda-Santiago-y-Elena.
+  This is a code bundle for Boda Elena y Santi. The original project is available at https://www.figma.com/design/nH0SX3O0nrJzEuCIhM9syW/Boda-Santiago-y-Elena.
 
   ## Running the code
 

@@ -1,6 +1,6 @@
 # 💍 Boda de Santi y Elena
 
-Landing page elegante para la boda de Santiago y Elena el 12-04-2026.
+Landing page elegante para la boda de Boda Elena y santi el 12-04-2026.
 
 ---
 
