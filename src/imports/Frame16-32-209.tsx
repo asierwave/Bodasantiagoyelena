@@ -13,7 +13,7 @@ function Frame7() {
 function Frame9() {
   return (
     <div className="content-stretch flex flex-col gap-[6.4px] items-center relative shrink-0">
-      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[40px] text-black text-nowrap whitespace-pre">La ceremonia</p>
+      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[40px] text-black text-nowrap whitespace-pre">Ceremonia</p>
     </div>
   );
 }
@@ -73,9 +73,7 @@ function Frame1() {
 
 function Frame12() {
   return (
-    <div className="content-stretch flex flex-col gap-[8px] items-center justify-center relative shrink-0 w-full">
-      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[80px] text-black text-center text-nowrap whitespace-pre">{`Os queremos invtar a `}</p>
-    </div>
+    
   );
 }
 
@@ -83,7 +81,7 @@ function Frame18() {
   return (
     <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
       <Frame12 />
-      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[#452746] text-[240px] text-nowrap whitespace-pre">La ceremonia</p>
+      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[#452746] text-[240px] text-nowrap whitespace-pre">Ceremonia</p>
     </div>
   );
 }
@@ -161,11 +159,7 @@ function Frame4() {
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <img alt="" className="absolute max-w-none object-50%-50% object-cover size-full" src={imgFrame3} />
         <div className="absolute inset-0" />
-      </div>
-      <Frame23 />
-      <Frame16 />
-      <Frame24 />
-    </div>
+      
   );
 }
 
@@ -173,21 +167,14 @@ function Frame25() {
   return (
     <div className="content-stretch flex flex-col gap-[8px] items-center justify-center relative shrink-0 w-full">
       <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[0px] text-[40px] text-black text-center w-full">
-        <span>{`Déjanos aquí tus preferencias `}</span>
+        <span>{`Déjanos aquí tus preferencias: `}</span>
         <span className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">para que todo vaya de lujo.</span>
       </p>
     </div>
   );
 }
 
-function Frame26() {
-  return (
-    <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
-      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[#452746] text-[240px] text-nowrap whitespace-pre">¿Vendrás?</p>
-      <Frame25 />
-    </div>
-  );
-}
+
 
 function Frame27() {
   return (
@@ -248,7 +235,7 @@ function Frame29() {
     <div className="box-border content-stretch flex gap-[10px] items-center overflow-clip px-0 py-[16px] relative rounded-[8px] shrink-0">
       <p className="font-['Migra:Extralight',sans-serif] leading-[normal] not-italic relative shrink-0 text-[32px] text-black text-nowrap whitespace-pre">
         <span>{`Marca la casilla `}</span>
-        <span className="[text-underline-position:from-font] decoration-solid underline">con tus preferencias</span>
+        <span className="[text-underline-position:from-font] decoration-solid underline">con tus preferencias:</span>
       </p>
     </div>
   );

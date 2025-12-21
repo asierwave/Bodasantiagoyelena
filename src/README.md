@@ -132,7 +132,7 @@ Si quieres usar una carpeta diferente:
 2. Nómbrala: **"Confirmaciones Boda"**
 3. Primera fila (encabezados):
 
-| Nombre | Email | Teléfono | Celiaco | Vegetariano | Intolerante Lactosa | Sin Preferencias | Sugerencia Canción | Fecha |
+| Nombre | Email | Teléfono | Celiaco | Vegetariano | Intolerante Lactosa | Sin preferencias: | Sugerencia Canción | Fecha |
 
 ### Paso 2: Crear Apps Script
 
@@ -248,7 +248,7 @@ const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/TU_URL_AQUI/e
 
 Reemplaza estos archivos en `/assets/`:
 - `fotoprincipal.jpeg` - Foto del header
-- `fotoiglesia.jpeg` - Foto de la ceremonia
+- `fotoiglesia.jpeg` - Foto de Ceremonia
 
 ### Cambiar textos
 
