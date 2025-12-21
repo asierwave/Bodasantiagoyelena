@@ -242,7 +242,7 @@ const scrollToSection = (sectionId: string) => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        >11-04-2026</motion.p>
+        >11.04.2026</motion.p>
       </motion.div>
     </div>
   );
@@ -521,7 +521,7 @@ function PhotoCarousel() {
                     animate={{
                       width: currentIndex === index ? '32px' : '8px',
                       height: '8px',
-                      backgroundColor: currentIndex === index ? '#faf7fa' : 'rgba(100, 100, 100, 0.7)',
+                      backgroundColor: currentIndex === index ? '#faf7fa' : 'rgba(223, 219, 219, 0.7)',
                     }}
                  
                     transition={{ duration: 0.3 }}
