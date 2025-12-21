@@ -17,17 +17,11 @@ const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwO6glO7
 const GOOGLE_DRIVE_FOLDER_ID = "1gDPI8Dqg2Xwxhc_m5PcwOhf37HCwi";
 
 // Importar imágenes explícitamente
-import img8 from "./assets/carousel/IMG-20251216-WA0040.jpg";
-import img9 from "./assets/carousel/IMG-20251216-WA0048.jpg";
-import img10 from "./assets/carousel/IMG-20251216-WA0053.jpg";
-import img11 from "./assets/carousel/IMG-20251216-WA0055.jpg";
-import img12 from "./assets/carousel/IMG-20251216-WA0057.jpg";
-import img13 from "./assets/carousel/IMG-20251216-WA0059.jpg";
+
 import img14 from "./assets/carousel/IMG-20251216-WA0061.jpg";
 import img15 from "./assets/carousel/IMG-20251216-WA0063.jpg";
 import img16 from "./assets/carousel/IMG-20251216-WA0065.jpg";
 import img17 from "./assets/carousel/IMG-20251216-WA0067.jpg";
-import img18 from "./assets/carousel/IMG-20251216-WA0070.jpg";
 import img19 from "./assets/carousel/IMG-20251216-WA0071.jpg";
 import img20 from "./assets/carousel/IMG-20251216-WA0073.jpg";
 import img21 from "./assets/carousel/IMG-20251216-WA0075.jpg";
@@ -38,12 +32,6 @@ import img25 from "./assets/carousel/IMG-20251216-WA0083.jpg";
 import img26 from "./assets/carousel/IMG-20251216-WA0085.jpg";
 import img27 from "./assets/carousel/IMG-20251216-WA0087.jpg";
 import img28 from "./assets/carousel/IMG-20251216-WA0089.jpg";
-import img29 from "./assets/carousel/IMG-20251216-WA0091.jpg";
-import img30 from "./assets/carousel/IMG-20251216-WA0093.jpg";
-import img31 from "./assets/carousel/IMG-20251216-WA0095.jpg";
-import img32 from "./assets/carousel/IMG-20251216-WA0097.jpg";
-import img33 from "./assets/carousel/IMG-20251216-WA0099.jpg";
-import img34 from "./assets/carousel/IMG-20251216-WA0101.jpg";
 import img35 from "./assets/carousel/santiagosanta.jpeg";
 
 //Si añades nuevas fotos al carousel, esta sería la 35, la siguiente la img36
@@ -56,10 +44,8 @@ import img35 from "./assets/carousel/santiagosanta.jpeg";
 //,img35 en el ejemplo que ponemos arriba
 
 const FALLBACK_IMAGES = [
-  img8, img9, img10,
-  img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
-  img21, img22, img23, img24, img25, img26, img27, img28, img29, img30,
-  img31, img32, img33, img34, img35
+  img14, img15, img16, img17, img19, img20,
+  img21, img22, img23, img24, img25, img26, img27, img28, img35
 ];
 
 function AnimatedHeader() {
@@ -103,7 +89,7 @@ const scrollToSection = (sectionId: string) => {
         {/* Degradado para opacar ligeramente la imagen */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
       </div>
-      <div className="bg-[#000000] relative shrink-0 w-full z-10 pt-[4px]" style={isMenuOpen ? { position: 'sticky', top: 0 } : undefined}>
+      <div className="bg-[#000000] relative shrink-0 w-full z-10 pt-[4px]" style={isMenuOpen ? { background:'#f5f5f540', position: 'sticky', top: 0 } : !isMenuOpen ? { background: '#f5f5f540'} : undefined}>
         <div className="flex flex-row items-center p-[0px]">
           {/* Desktop Menu */}
          <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[20px] py-[8px] relative w-full h-fit">
@@ -154,7 +140,7 @@ const scrollToSection = (sectionId: string) => {
           </div>
 
           {/* Mobile Menu */}
-          <div className={`md:hidden flex items-center justify-between px-[20px] relative w-full ${isMenuOpen ? 'py-0' : 'py-[8px]'}`}>
+          <div className={`md:hidden flex items-center justify-between px-[20px] relative w-full ${isMenuOpen ? 'py-[8px]': 'py-[8px]'}`}>
             <div className="content-stretch flex flex-col gap-[4px] items-center relative">
               <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[22px] text-[#f5f5f5] text-center">E&S</p>
             </div>
@@ -176,7 +162,7 @@ const scrollToSection = (sectionId: string) => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="md:hidden overflow-hidden bg-[#f5f5f5] border-t border-[#452746]/10 z-50"
+              className="md:hidden overflow-hidden bg-[#f5f5f5]   z-50"
             >
               <div className="flex flex-col gap-3 px-[20px] py-[16px]">
        <div 
@@ -228,19 +214,20 @@ const scrollToSection = (sectionId: string) => {
       </div>
       <motion.div 
         className="basis-0 content-stretch flex flex-col font-['Roboto_Slab',serif] font-light gap-[12px] grow items-center justify-center leading-[normal] min-h-px min-w-px relative shrink-0 text-[28px] md:text-[40px] lg:text-[48px] px-4 z-[5]"
-        style={{ opacity, scale, top: '-80px'}}
+        style={{ opacity, scale, top: '22vh'}}
       >
         <motion.p 
       
           className="relative shrink-0 text-[#faf7fa] text-center"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          style = {{color: '#f5f5f590'}}
+          initial={{ opacity: 0, y: -50, scale: 0 }}
+          animate={{ opacity: 1, y: 120, scale: 2.5}}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >Elena & Santi</motion.p>
         <motion.p 
           className="relative shrink-0 text-neutral-100 text-center"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: -50, scale:0 }}
+          animate={{ opacity: 0.6, y: 0, scale: 1.5 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >11-04-2026</motion.p>
       </motion.div>
@@ -354,6 +341,9 @@ function PhotoCarousel() {
 <motion.div
   id="carousel"
   ref={ref}
+  style={{
+    overflow:'hidden'
+  }}
   className="relative w-full py-[80px] md:py-[120px]
              overflow-x-hidden overflow-y-visible
              z-20 -mb-[60px] md:-mb-[100px]
@@ -405,7 +395,7 @@ function PhotoCarousel() {
                     }}
                     style={{
                       width: offset === 0 ? '90%' : '75%',
-                      maxWidth: offset === 0 ? '1400px' : '1000px',
+                      maxWidth: offset === 0 ? '60%' : '100px',
                     }}
                     className="md:block hidden"
                   >
@@ -421,14 +411,18 @@ function PhotoCarousel() {
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 from-transparent via-transparent to-black/20" />
+                      <div 
+                      className="absolute inset-0 from-transparent via-transparent to-black/20"/>
                     </div>
                   </motion.div>
                 ))}
               </AnimatePresence>
 
               {/* Vista móvil */}
-               <div className="md:hidden relative w-full h-[400px] flex items-center justify-center">
+               <div className="md:hidden relative w-full h-[400px] flex items-center justify-center"
+               style={{
+                width:'80%'
+               }}>
   <AnimatePresence initial={false} mode="popLayout">
     {getVisibleImages().map(({ index, offset }) => (
       <motion.div
@@ -568,7 +562,7 @@ function CeremonySection() {
     <div 
       id="ceremonia"
       ref={ref} 
-      className="box-border content-stretch flex flex-col gap-[60px] md:gap-[120px] min-h-[100vh] items-center overflow-clip pb-[40px] md:pb-[20px] pt-[40px] md:pt-[60px] px-0 relative shrink-0 w-full"
+      className="box-border content-stretch flex flex-col gap-[40px] md:gap-[120px] min-h-[100vh] items-center overflow-clip pb-[40px] md:pb-[20px] pt-[40px] md:pt-[60px] px-0 relative shrink-0 w-full"
     >
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
@@ -606,18 +600,7 @@ function CeremonySection() {
                 <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid.</p>
               </div>
             </motion.div>
-            <motion.button
-              onClick={handleNavigate}
-              className="bg-[#452746] box-border content-stretch flex flex-col gap-[8px] items-center justify-center overflow-clip px-[32px] md:px-[48px] py-[10px] md:py-[12px] relative rounded-[4px] shrink-0 cursor-pointer"
-              whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.3 }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              <p className="font-['Inter',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] text-neutral-100 text-center whitespace-nowrap">Navegar hasta allí</p>
-            </motion.button>
+       
           </div>
         </div>
       </div>
@@ -641,6 +624,11 @@ function CeremonySection() {
       </motion.div>
       <motion.button
         onClick={handleNavigate}
+        style={{
+          width: '50vw',
+          height: 'auto',
+          padding: '20px 40px'
+        }}
         className="bg-[#452746] box-border content-stretch flex flex-col gap-[8px] items-center justify-center overflow-clip px-[32px] py-[10px] md:py-[12px] relative rounded-[4px] shrink-0 z-10 cursor-pointer"
         whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
         whileTap={{ scale: 0.98 }}
@@ -719,7 +707,7 @@ function RSVPForm() {
       <motion.div 
         ref={ref}
         id="rsvp"
-        className="relative shrink-0 w-full mt-[60px] md:mt-[120px]"
+        className="relative shrink-0 w-full mt-[0px] md:mt-[0px]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -750,9 +738,9 @@ function RSVPForm() {
   }
 
   return (
-    <form ref={ref} id="rsvp" className="relative shrink-0 w-full mt-[60px] md:mt-[120px]" onSubmit={handleSubmit}>
+    <form ref={ref} id="rsvp" className="relative shrink-0 w-full mt-0 md:mt-0" onSubmit={handleSubmit}>
       <div className="flex flex-col items-center justify-end size-full">
-        <div className="box-border content-stretch flex flex-col gap-[24px] md:gap-[32px] items-center justify-end px-[30px] md:px-[60px] lg:px-[120px] xl:px-[180px] py-[100px] md:py-[200px] relative w-full">
+        <div className="box-border content-stretch flex flex-col gap-[24px] md:gap-[32px] items-center justify-end px-[30px] md:px-[60px] lg:px-[120px] xl:px-[180px] py-[80px] md:py-[100px] relative w-full">
           <motion.div 
             className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full"
             style={{ y: titleY, opacity: titleOpacity }}
