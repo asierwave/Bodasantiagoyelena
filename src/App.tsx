@@ -886,9 +886,8 @@ function RSVPForm() {
             <div className="flex flex-col gap-[12px] w-full">
               <div className="box-border content-stretch flex gap-[8px] items-center overflow-clip px-0 py-[12px] relative rounded-[6px] shrink-0">
                 <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] lg:text-[17px] text-black">
-                  <span>{`Sugerencia de canción `}</span>
-                  <span className="[text-underline-position:from-font] decoration-solid underline">para Ceremonia</span>
-                  <span className="text-black/50 italic ml-1">(Opcional)</span>
+                  <span>{`¡Cuéntanos algo! Un mensaje para los novios, una canción imprescindible para bailar o cualquier idea para la fiesta.  `}</span>
+
                 </p>
               </div>
               <motion.div 
