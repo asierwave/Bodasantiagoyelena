@@ -6,7 +6,7 @@ import imgFrame2 from "./assets/fotoprincipal.jpeg";
 import imgFrame3 from "./assets/fotoiglesia.jpeg";
 
 const GOOGLE_MAPS_ADDRESS = "P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid";
-const GOOGLE_MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(GOOGLE_MAPS_ADDRESS)}`;
+
 const WHATSAPP_URL_SANTI = "https://wa.me/34637101282";
 const WHATSAPP_URL_ELENA = "https://wa.me/34619593934";
 const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwO6glO7G3i3ikg_HVs_5A3a-F5bJmhGZ6UBLChFc6ch_uoVblv--mcX1AgtJRtigUIVw/exec";
