@@ -740,12 +740,9 @@ function RSVPForm() {
             className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full"
             style={{ y: titleY, opacity: titleOpacity }}
           >
-            <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
-              <p className="font-['Roboto_Slab',serif] font-light italic leading-[normal] relative shrink-0 text-[#452746] text-[64px] md:text-[100px] lg:text-[130px] text-center px-4">¿Vendrás?</p>
               <div className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full">
                 <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] md:text-[18px] lg:text-[20px] text-black text-center w-full px-4">
-                  <span>{`Déjanos aquí tus preferencias `}</span>
-                  <span className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">para que todo vaya de lujo.</span>
+                  <span>{`Déjanos aquí tu información: `}</span>
                 </p>
               </div>
             </div>
