@@ -628,16 +628,7 @@ function CeremonySection() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <iframe
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(GOOGLE_MAPS_ADDRESS)}&zoom=15`}
-          width="50%"
-          height="50%"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="rounded-[12px]"
-        />
+       
       </motion.div>
       <motion.button
         onClick={handleNavigate}
