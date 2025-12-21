@@ -13,7 +13,7 @@ function Frame6() {
 function Frame8() {
   return (
     <div className="content-stretch flex flex-col gap-[6.4px] items-center relative shrink-0">
-      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[40px] text-black text-nowrap whitespace-pre">La ceremonia</p>
+      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[40px] text-black text-nowrap whitespace-pre">Ceremonia</p>
     </div>
   );
 }
@@ -77,7 +77,7 @@ function Frame17() {
   return (
     <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
       <Frame11 />
-      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[#452746] text-[240px] text-nowrap whitespace-pre">La ceremonia</p>
+      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[#452746] text-[240px] text-nowrap whitespace-pre">Ceremonia</p>
     </div>
   );
 }

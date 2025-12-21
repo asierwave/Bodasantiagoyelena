@@ -248,7 +248,7 @@ const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/TU_URL_AQUI/e
 
 Reemplaza estos archivos en `/assets/`:
 - `fotoprincipal.jpeg` - Foto del header
-- `fotoiglesia.jpeg` - Foto de la ceremonia
+- `fotoiglesia.jpeg` - Foto de Ceremonia
 
 ### Cambiar textos
 
