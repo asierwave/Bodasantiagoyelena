@@ -71,13 +71,7 @@ function Frame1() {
   );
 }
 
-function Frame11() {
-  return (
-    <div className="content-stretch flex flex-col gap-[8px] items-center justify-center relative shrink-0 w-full">
-      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[80px] text-black text-center text-nowrap whitespace-pre">{`Os queremos invtar a `}</p>
-    </div>
-  );
-}
+
 
 function Frame17() {
   return (
