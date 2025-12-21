@@ -628,12 +628,21 @@ function CeremonySection() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-       
+        <iframe
+          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(GOOGLE_MAPS_ADDRESS)}&zoom=15`}
+          width="50%"
+          height="50%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="rounded-[12px]"
+        />
       </motion.div>
       <motion.button
         onClick={handleNavigate}
         className="bg-[#452746] box-border content-stretch flex flex-col gap-[8px] items-center justify-center overflow-clip px-[32px] py-[10px] md:py-[12px] relative rounded-[4px] shrink-0 z-10 cursor-pointer"
-        whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
+        whileHover={{ scale: 1.05, backgroundColor: "#cfdddbff" }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.3 }}
         initial={{ opacity: 0, y: 30 }}
