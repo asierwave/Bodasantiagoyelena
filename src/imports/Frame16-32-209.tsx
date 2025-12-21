@@ -159,11 +159,7 @@ function Frame4() {
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <img alt="" className="absolute max-w-none object-50%-50% object-cover size-full" src={imgFrame3} />
         <div className="absolute inset-0" />
-      </div>
-      <Frame23 />
-      <Frame16 />
-      <Frame24 />
-    </div>
+      
   );
 }
 
@@ -178,14 +174,7 @@ function Frame25() {
   );
 }
 
-function Frame26() {
-  return (
-    <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
-      <p className="font-['Migra_Italic:Extralight_Italic',sans-serif] italic leading-[normal] relative shrink-0 text-[#452746] text-[240px] text-nowrap whitespace-pre">¿Vendrás?</p>
-      <Frame25 />
-    </div>
-  );
-}
+
 
 function Frame27() {
   return (
