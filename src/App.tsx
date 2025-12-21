@@ -216,7 +216,7 @@ function AnimatedHeader() {
         </AnimatePresence>
       </div>
       <motion.div 
-        className="basis-0 content-stretch flex flex-col font-['Roboto_Slab',serif] font-light gap-[12px] grow items-center justify-center leading-[normal] min-h-px min-w-px relative shrink-0 text-[28px] md:text-[40px] lg:text-[48px] px-4 z-[5]"
+        className="basis-0 content-stretch flex flex-col font-['Roboto_Slab',serif] font-light gap-[12px] grow items-center justify-superior leading-[normal] min-h-px min-w-px relative shrink-0 text-[28px] md:text-[40px] lg:text-[48px] px-4 z-[5]"
         style={{ opacity, scale }}
       >
         <motion.p 
