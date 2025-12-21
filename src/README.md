@@ -132,7 +132,7 @@ Si quieres usar una carpeta diferente:
 2. Nómbrala: **"Confirmaciones Boda"**
 3. Primera fila (encabezados):
 
-| Nombre | Email | Teléfono | Celiaco | Vegetariano | Intolerante Lactosa | Sin Preferencias | Sugerencia Canción | Fecha |
+| Nombre | Email | Teléfono | Celiaco | Vegetariano | Intolerante Lactosa | Sin preferencias: | Sugerencia Canción | Fecha |
 
 ### Paso 2: Crear Apps Script
 

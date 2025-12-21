@@ -810,7 +810,7 @@ function RSVPForm() {
               <div className="box-border content-stretch flex gap-[8px] items-center overflow-clip px-0 py-[12px] relative rounded-[6px] shrink-0">
                 <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] lg:text-[17px] text-black">
                   <span>{`Marca la casilla `}</span>
-                  <span className="[text-underline-position:from-font] decoration-solid underline">con tus preferencias</span>
+                  <span className="[text-underline-position:from-font] decoration-solid underline">con tus preferencias sobre el menú:</span>
                 </p>
               </div>
               <motion.div 
@@ -878,7 +878,7 @@ function RSVPForm() {
                   <div aria-hidden="true" className="absolute border-3 border-neutral-50 border-solid inset-[-2px] pointer-events-none rounded-[5px]" />
                 </motion.div>
                 <div className="box-border content-stretch flex gap-[8px] items-center overflow-clip px-[12px] md:px-[14px] py-[8px] md:py-[10px] relative rounded-[6px] shrink-0">
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] lg:text-[17px] text-black whitespace-nowrap">Sin preferencias</p>
+                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] lg:text-[17px] text-black whitespace-nowrap">Sin preferencias:</p>
                 </div>
               </motion.div>
             </div>
