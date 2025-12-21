@@ -73,13 +73,19 @@ function AnimatedHeader() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
-  const scrollToSection = (sectionId: string) => {
+const scrollToSection = (sectionId: string) => {
+  // Primero cierra el menú
+  setIsMenuOpen(false);
+
+  // Espera un tick para que React cierre el menú y desbloquee scroll
+  setTimeout(() => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
     }
-  };
+  }, 50); // 50ms es suficiente
+};
+
 
   return (
     <div ref={ref} className="box-border content-stretch flex flex-col h-[100vh] items-center justify-between overflow-clip pb-0 pt-0 px-0 relative shrink-0 w-full">
@@ -100,7 +106,8 @@ function AnimatedHeader() {
       <div className="bg-[#000000] relative shrink-0 w-full z-10 pt-[4px]" style={isMenuOpen ? { position: 'sticky', top: 0 } : undefined}>
         <div className="flex flex-row items-center p-[0px]">
           {/* Desktop Menu */}
-          <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[60px] lg:px-[100px] xl:px-[140px] py-8 relative w-full h-fit">
+         <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[20px] py-[8px] relative w-full h-fit">
+
             <div className="content-stretch flex flex-col gap-[4px] items-center relative shrink-0">
               <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] lg:text-[28px] text-[#f5f5f5]/60 text-center">E&S</p>
             </div>
@@ -172,12 +179,16 @@ function AnimatedHeader() {
               className="md:hidden overflow-hidden bg-[#f5f5f5] border-t border-[#452746]/10 z-50"
             >
               <div className="flex flex-col gap-3 px-[20px] py-[16px]">
-                <div 
-                  className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
-                  onClick={() => scrollToSection("carousel")}
-                >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">Nuestros momentos</p>
-                </div>
+       <div 
+  className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
+  onClick={() => {
+    setIsMenuOpen(false);       // 1. Cierra el menú
+    scrollToSection("carousel"); // 2. Hace scroll al ancla
+  }}
+>
+  <p className="text-[16px] text-black text-center">Nuestros momentos</p>
+</div>
+
                 <div 
                   className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
                   onClick={() => scrollToSection("ceremonia")}
@@ -217,9 +228,10 @@ function AnimatedHeader() {
       </div>
       <motion.div 
         className="basis-0 content-stretch flex flex-col font-['Roboto_Slab',serif] font-light gap-[12px] grow items-center justify-center leading-[normal] min-h-px min-w-px relative shrink-0 text-[28px] md:text-[40px] lg:text-[48px] px-4 z-[5]"
-        style={{ opacity, scale }}
+        style={{ opacity, scale, top: '-80px'}}
       >
         <motion.p 
+      
           className="relative shrink-0 text-[#faf7fa] text-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -345,14 +357,15 @@ function PhotoCarousel() {
   className="relative w-full py-[80px] md:py-[120px]
              overflow-x-hidden overflow-y-visible
              z-20 -mb-[60px] md:-mb-[100px]
-             bg-gradient-to-b from-white via-[#faf7fa] to-white"
+             bg-[#452746] md:bg-gradient-to-b md:from-white md:via-[#faf7fa] md:to-white"
 >
+
 
       {/* Estado de carga */}
       {isLoading && (
         <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center">
           <div className="flex flex-col items-center gap-4">
-            <div className="w-12 h-12 border-4 border-[#452746]/20 border-t-[#452746] rounded-full animate-spin" />
+            <div className="w-12 h-12 border-4 border-[#faf7fa]/20 border-t-[#faf7fa] rounded-full animate-spin" />
             <p className="font-['Roboto_Slab',serif] text-[#452746] text-[18px] md:text-[20px]">
               Cargando fotos...
             </p>
@@ -363,9 +376,9 @@ function PhotoCarousel() {
       {/* Carrousel - se muestra cuando no está cargando y hay imágenes */}
       {!isLoading && carouselImages.length > 0 && (
         <>
-          <div className="relative w-full h-[200px] md:h-[600px]">
+          <div className="relative w-full h-[400px] md:h-[600px]">
             {/* Contenedor de imágenes */}
-            <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full flex items-center justify-center">
               <AnimatePresence initial={false} mode="popLayout">
                 {getVisibleImages().map(({ index, offset }) => (
                   <motion.div
@@ -408,60 +421,62 @@ function PhotoCarousel() {
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+                      <div className="absolute inset-0 from-transparent via-transparent to-black/20" />
                     </div>
                   </motion.div>
                 ))}
               </AnimatePresence>
 
               {/* Vista móvil */}
-              <div className="md:hidden relative w-full h-full flex items-center justify-center">
-                <AnimatePresence initial={false} mode="popLayout">
-                  {getVisibleImages().map(({ index, offset }) => (
-                    <motion.div
-                      key={index}
-                      className="absolute"
-                      initial={{
-                        x: `${offset * 90}%`,
-                        scale: offset === 0 ? 1 : 0.8,
-                        opacity: offset === 0 ? 1 : 0.5,
-                        zIndex: offset === 0 ? 10 : 5,
-                      }}
-                      animate={{
-                        x: `${offset * 90}%`,
-                        scale: offset === 0 ? 1 : 0.8,
-                        opacity: offset === 0 ? 1 : 0.5,
-                        zIndex: offset === 0 ? 10 : 5,
-                      }}
-                      exit={{
-                        opacity: 0,
-                      }}
-                      transition={{
-                        duration: 0.6,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                      style={{
-                        width: offset === 0 ? '90%' : '70%',
-                      }}
-                    >
-                      <div 
-                        className="relative w-full h-[400px] rounded-[12px] overflow-hidden shadow-xl"
-                        style={{
-                          filter: offset === 0 ? 'none' : 'brightness(0.6)',
-                        }}
-                      >
-                        <img
-                          src={carouselImages[index]}
-                          alt={`Foto ${index + 1}`}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
+               <div className="md:hidden relative w-full h-[400px] flex items-center justify-center">
+  <AnimatePresence initial={false} mode="popLayout">
+    {getVisibleImages().map(({ index, offset }) => (
+      <motion.div
+        key={index}
+        className="absolute"
+        initial={{
+          x: `${offset * 90}%`,
+          scale: offset === 0 ? 1 : 0.8,
+          opacity: offset === 0 ? 1 : 0.5,
+          zIndex: offset === 0 ? 10 : 5,
+        }}
+        animate={{
+          x: `${offset * 90}%`,
+          scale: offset === 0 ? 1 : 0.8,
+          opacity: offset === 0 ? 1 : 0.5,
+          zIndex: offset === 0 ? 10 : 5,
+        }}
+        exit={{
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        style={{
+          width: offset === 0 ? '100%' : '80%',
+          height: '90%',
+        }}
+      >
+        <div 
+          className="relative w-full h-full rounded-[12px] overflow-hidden shadow-xl"
+          style={{
+            filter: offset === 0 ? 'none' : 'brightness(0.6)',
+          }}
+        >
+          <img
+            src={carouselImages[index]}
+            alt={`Foto ${index + 1}`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+        </div>
+      </motion.div>
+    ))}
+  </AnimatePresence>
+</div>
+
             </div>
 
             {/* Botones de navegación */}
@@ -486,7 +501,9 @@ function PhotoCarousel() {
             </motion.button>
 
             {/* Indicadores de posición */}
-            <div className="absolute bottom-[20px] left-1/2 -translate-x-1/2 z-20 flex gap-2">
+            <div style={{
+    top: window.innerWidth >= 768 ? '620px' : '400px',
+  }} className="absolute left-1/2 -translate-x-1/2 z-20 flex gap-2">
               {carouselImages.map((_, index) => (
                 <motion.button
                   key={index}
@@ -504,8 +521,9 @@ function PhotoCarousel() {
                     animate={{
                       width: currentIndex === index ? '32px' : '8px',
                       height: '8px',
-                      backgroundColor: currentIndex === index ? '#452746' : 'rgba(69, 39, 70, 0.3)',
+                      backgroundColor: currentIndex === index ? '#faf7fa' : 'rgba(100, 100, 100, 0.7)',
                     }}
+                 
                     transition={{ duration: 0.3 }}
                   />
                 </motion.button>
@@ -515,13 +533,13 @@ function PhotoCarousel() {
 
           {/* Texto decorativo */}
           <motion.div
-            className="text-center mt-[40px] md:mt-[60px] px-4"
+            className="text-center mt-[40px] md:mt-[40px] px-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <p className="font-['Roboto_Slab',serif] font-light italic text-[#452746] text-[32px] md:text-[44px] lg:text-[50px]">
+            <p className="font-['Roboto_Slab',serif] font-light italic text-neutral-100 text-[32px] md:text-[44px] lg:text-[50px]">
               Nuestros momentos
             </p>
           </motion.div>
