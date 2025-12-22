@@ -634,6 +634,28 @@ function CeremonySection() {
     </div>
   );
 }
+ProgramSection.tsx
+
+// 1. Importas el componente arriba
+import ProgramSection from "./components/ProgramSection"; 
+import CeremonySection from "./components/CeremonySection"; // Este ya lo tendrás
+
+function App() {
+  return (
+    <div>
+      {/* ... otras secciones ... */}
+      
+      <CeremonySection />
+      
+      {/* 2. Lo añades aquí, justo debajo de la ceremonia o donde prefieras */}
+      <ProgramSection />
+
+      {/* ... otras secciones ... */}
+    </div>
+  );
+}
+
+export default App;
 
 function RSVPForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
