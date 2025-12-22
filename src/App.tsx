@@ -637,26 +637,22 @@ function CeremonySection() {
   );
 }
 
-const CASA_BURGOS_URL =
-  "https://maps.google.com/?cid=6180376183828684675";
+const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=Ermita+de+la+Virgen+del+Puerto&destination_place_id=ChIJFZMU8HQoQg0REkK5D53WAU4";
 
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
-
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start end", "end start"]
   });
 
   const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
-  const titleOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.05]);
 
   const handleNavigate = () => {
-    window.open(CASA_BURGOS_URL, "_blank", "noopener,noreferrer");
+    window.open(GOOGLE_MAPS_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
