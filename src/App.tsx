@@ -674,8 +674,9 @@ function ProgramaBodaSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
+        {/* CORRECCIÓN AQUÍ: Usar imgFrame4 en lugar de ordenBoda */}
         <img
-          src={ordenBoda}
+          src={imgFrame4} 
           alt="Programa de la boda"
           className="w-full max-w-[700px] rounded-[16px] shadow-xl"
         />
