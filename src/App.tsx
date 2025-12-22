@@ -639,49 +639,84 @@ function CeremonySection() {
 
 const CASA_BURGOS_URL = "https://maps.google.com/?q=Casa+de+Burgos+Madrid";
 
-
 function BanqueteSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+
   const handleNavigate = () => {
-    window.open(GOOGLE_MAPS_BANQUETE_URL, "_blank", "noopener,noreferrer");
+    window.open(GOOGLE_MAPS_BANQUETE, "_blank", "noopener,noreferrer");
   };
 
   return (
     <div
       id="banquete"
-      className="relative w-full flex justify-center px-[30px] md:px-[60px] py-[80px] md:py-[140px]"
+      ref={ref}
+      className="box-border flex flex-col items-center justify-center gap-[60px]
+                 min-h-[100vh] w-full px-[30px] md:px-[60px]
+                 py-[80px] md:py-[140px] bg-white relative"
     >
-      {/* CONTENEDOR IMAGEN */}
-      <div className="relative w-full max-w-[900px]">
-        {/* IMAGEN (NO SE TOCA) */}
+      {/* TÍTULO */}
+      <motion.div
+        className="flex flex-col items-center"
+        style={{ y: titleY, opacity: titleOpacity }}
+      >
+        <p className="font-['Roboto_Slab',serif] font-light italic
+                      text-[#452746] text-[52px] md:text-[78px] lg:text-[100px]
+                      text-center">
+          Banquete
+        </p>
+      </motion.div>
+
+      {/* IMAGEN + OVERLAY */}
+      <motion.div
+        className="relative flex justify-center w-full"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {/* Imagen EXACTA como ProgramaBodaSection */}
         <img
           src={imgFrame5}
           alt="Banquete"
-          className="w-full rounded-[16px] shadow-xl"
+          className="w-full max-w-[700px] rounded-[16px] shadow-xl"
         />
 
-        {/* TEXTO ENCIMA */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-[16px] text-center">
-          <p className="font-['Roboto_Slab',serif] text-white text-[18px] md:text-[20px]">
+        {/* Overlay de texto */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-[16px]
+                        text-white text-center pointer-events-none">
+          <p className="font-['Roboto_Slab',serif] text-[22px] md:text-[26px]">
             14:00
           </p>
 
-          <p className="font-['Roboto_Slab',serif] font-bold text-white text-[22px] md:text-[26px]">
+          <p className="font-['Roboto_Slab',serif] font-bold text-[26px] md:text-[30px]">
             Casa de Burgos
           </p>
 
-          <button
-            onClick={handleNavigate}
-            className="bg-[#452746] text-white font-['Inter',sans-serif] font-bold
-                       px-[32px] py-[10px] rounded-[4px]
-                       hover:bg-[#5a3358] transition"
-          >
-            Navega hasta allí
-          </button>
+          {/* Botón (reactiva eventos solo aquí) */}
+          <div className="pointer-events-auto mt-4">
+            <motion.button
+              onClick={handleNavigate}
+              className="bg-[#452746] px-[32px] py-[12px] rounded-[4px]
+                         text-neutral-100 font-['Inter',sans-serif] font-bold"
+              whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Navega hasta allí
+            </motion.button>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
+
 
 
 
