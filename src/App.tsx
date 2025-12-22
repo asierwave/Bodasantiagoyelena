@@ -543,6 +543,9 @@ function PhotoCarousel() {
   );
 }
 
+const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=Ermita+de+la+Virgen+del+Puerto&destination_place_id=ChIJFZMU8HQoQg0REkK5D53WAU4";
+
 function CeremonySection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
