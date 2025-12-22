@@ -682,11 +682,11 @@ function BanqueteSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="font-['Roboto_Slab',serif] font-light text-[18px] md:text-[20px]">
+        <p className="font-['Roboto_Slab',serif] font-light text-[20px] md:text-[22px]">
           14:00
         </p>
 
-        <p className="font-['Roboto_Slab',serif] font-bold text-[20px] md:text-[22px]">
+        <p className="font-['Roboto_Slab',serif] font-bold text-[22px] md:text-[24px]">
           Casa de Burgos
         </p>
 
