@@ -638,13 +638,14 @@ function CeremonySection() {
 }
 
 const CASA_BURGOS_URL =
-  "https://maps.google.com/?cid=6180376183828684675&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ";
+  "https://maps.google.com/?cid=6180376183828684675";
+
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
@@ -655,7 +656,7 @@ function BanqueteSection() {
   );
 
   const handleNavigate = () => {
-    window.open(GOOGLE_MAPS_BANQUETE, "_blank", "noopener,noreferrer");
+    window.open(CASA_BURGOS_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -671,14 +672,16 @@ function BanqueteSection() {
         className="flex flex-col items-center"
         style={{ y: titleY, opacity: titleOpacity }}
       >
-        <p className="font-['Roboto_Slab',serif] font-light italic
-                      text-[#452746] text-[52px] md:text-[78px] lg:text-[100px]
-                      text-center">
+        <p
+          className="font-['Roboto_Slab',serif] font-light italic
+                     text-[#452746] text-[52px] md:text-[78px] lg:text-[100px]
+                     text-center"
+        >
           Banquete
         </p>
       </motion.div>
 
-      {/* TEXTO SUPERIOR */}
+      {/* TEXTO */}
       <motion.div
         className="font-['Roboto_Slab',serif] font-light
                    text-[16px] md:text-[18px] lg:text-[20px]
@@ -710,7 +713,7 @@ function BanqueteSection() {
         />
       </motion.div>
 
-      {/* BOTÓN */}
+      {/* BOTÓN DEBAJO DE LA FOTO */}
       <motion.button
         onClick={handleNavigate}
         className="bg-[#452746] px-[40px] py-[14px] rounded-[6px]
@@ -728,6 +731,7 @@ function BanqueteSection() {
   );
 }
 
+export default BanqueteSection;
 
 
 
