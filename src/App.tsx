@@ -534,7 +534,7 @@ function PhotoCarousel() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <p className="font-['Roboto_Slab',serif] font-light italic text-neutral-100 text-[32px] md:text-[44px] lg:text-[50px]">
-              GALERIA FOTOS
+              Galería fotos
             </p>
           </motion.div>
         </>
