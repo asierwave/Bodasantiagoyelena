@@ -591,19 +591,24 @@ function CeremonySection() {
                 <p className="font-['Roboto_Slab',serif] font-light italic leading-[normal] relative shrink-0 text-[#452746] text-[52px] md:text-[78px] lg:text-[100px] text-center px-4">Ceremonia</p>
               </div>
             </motion.div>
-            <motion.div 
-              className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] md:text-[18px] lg:text-[20px] text-black text-center px-4 flex flex-col gap-[24px]">
-                <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">12.30</p>
-                <p className="font-bold underline [text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid text-[18px] md:text-[20px] lg:text-[22px]"> Ermita Virgen del Puerto. </p>
-                <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid.</p>
-              </div>
-            </motion.div>
+            <motion.div
+  className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full"
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, margin: '-100px' }}
+  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+>
+  <div className="font-['Roboto_Slab',serif] font-light relative shrink-0 text-[15px] md:text-[18px] lg:text-[20px] text-black text-center px-4 flex flex-col gap-[24px]">
+    
+    <p>12.30</p>
+
+    <p className="font-bold text-[18px] md:text-[20px] lg:text-[22px]">Ermita Virgen del Puerto.</p>
+
+    <p>P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid.</p>
+
+  </div>
+</motion.div>
+
        
           </div>
         </div>
