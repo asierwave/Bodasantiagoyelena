@@ -588,7 +588,7 @@ function CeremonySection() {
                 <div className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full">
                   <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[18px] md:text-[24px] lg:text-[28px] text-black text-center px-4">{``}</p>
                 </div>
-                <p className="font-['Roboto_Slab',serif] font-light italic leading-[normal] relative shrink-0 text-[#452746] text-[52px] md:text-[78px] lg:text-[100px] text-center px-4">La ceremonia</p>
+                <p className="font-['Roboto_Slab',serif] font-light italic leading-[normal] relative shrink-0 text-[#452746] text-[52px] md:text-[78px] lg:text-[100px] text-center px-4">Ceremonia</p>
               </div>
             </motion.div>
             <motion.div 
@@ -599,7 +599,7 @@ function CeremonySection() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] md:text-[18px] lg:text-[20px] text-black text-center px-4">
-                <p className="mb-0">que tendrá lugar en la Ermita de Virgen del Puerto.</p>
+               
                 <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid.</p>
               </div>
             </motion.div>
