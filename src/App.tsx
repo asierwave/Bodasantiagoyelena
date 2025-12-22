@@ -635,55 +635,6 @@ function CeremonySection() {
   );
 }
 
-function ProgramaBodaSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
-  return (
-    <div
-      id="programa"
-      ref={ref}
-      className="box-border flex flex-col items-center justify-center gap-[60px]
-                 min-h-[100vh] w-full px-[30px] md:px-[60px]
-                 py-[80px] md:py-[140px] bg-white relative"
-    >
-      {/* TÍTULO */}
-      <motion.div
-        className="flex flex-col items-center"
-        style={{ y: titleY, opacity: titleOpacity }}
-      >
-        <p className="font-['Roboto_Slab',serif] font-light italic
-                      text-[#452746] text-[52px] md:text-[78px] lg:text-[100px]
-                      text-center">
-          Programa de Boda
-        </p>
-      </motion.div>
-
-      {/* IMAGEN */}
-      <motion.div
-        className="flex justify-center w-full"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <img
-          src={ordenBoda}
-          alt="Programa de la boda"
-          className="w-full max-w-[700px] rounded-[16px] shadow-xl"
-        />
-      </motion.div>
-    </div>
-  );
-}
-
-
 function RSVPForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -999,7 +950,6 @@ export default function App() {
       <AnimatedHeader />
       <PhotoCarousel />
       <CeremonySection />
-      <ProgramaBodaSection />
       <RSVPForm />
       <Footer />
     </div>
