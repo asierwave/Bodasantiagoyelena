@@ -742,7 +742,7 @@ function RSVPForm() {
               <div className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full">
                 <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] md:text-[18px] lg:text-[20px] text-black text-center w-full px-4">
                   <span>{`¡Acompáñanos en nuestro gran día!`}</span>
-                  <span className="[text-decoration-skip-ink:none]">Por favor, completa el siguente formulario.</span>
+                  <span className="[text-decoration-skip-ink:none]">  Por favor, completa el siguente formulario.</span>
                 </p>
               </div>
             </div>
@@ -885,7 +885,7 @@ function RSVPForm() {
             <div className="flex flex-col gap-[12px] w-full">
               <div className="box-border content-stretch flex gap-[8px] items-center overflow-clip px-0 py-[12px] relative rounded-[6px] shrink-0">
                 <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] lg:text-[17px] text-black">
-                  <span>{`¡Cuéntanos algo¡ ¿Algún mensaje, canción o idea? ¡Todo vale!`}</span>            
+                  <span>{`¡Cuéntanos algo! ¿Algún mensaje, canción o idea? ¡Todo vale!`}</span>            
                   <span className="text-black/50 italic ml-1">(Opcional)</span>
                 </p>
               </div>
