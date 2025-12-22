@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import imgFrame2 from "./assets/fotoprincipal.jpeg";
 import imgFrame3 from "./assets/fotoiglesia.jpeg";
 import imgFrame4 from "./assets/orden-boda.jpeg";
+import imgFrame5 from "./assets/banquete.jpeg";
 
 const GOOGLE_MAPS_ADDRESS = "P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid";
 
@@ -636,6 +637,61 @@ function CeremonySection() {
   );
 }
 
+function BanqueteSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
+  const titleOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
+  return (
+    <div
+      id="banquete"
+      ref={ref}
+      className="box-border flex flex-col items-center justify-center gap-[60px]
+                 min-h-[100vh] w-full px-[30px] md:px-[60px]
+                 py-[80px] md:py-[140px] bg-white relative"
+    >
+      {/* TÍTULO */}
+      <motion.div
+        className="flex flex-col items-center"
+        style={{ y: titleY, opacity: titleOpacity }}
+      >
+        <p
+          className="font-['Roboto_Slab',serif] font-light italic
+                     text-[#452746] text-[52px] md:text-[78px] lg:text-[100px]
+                     text-center"
+        >
+          Banquete
+        </p>
+      </motion.div>
+
+      {/* IMAGEN */}
+      <motion.div
+        className="flex justify-center w-full"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <img
+          src={imgFrame5}
+          alt="Banquete"
+          className="w-full max-w-[700px] rounded-[16px] shadow-xl"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+
 function ProgramaBodaSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -1001,6 +1057,7 @@ export default function App() {
       <AnimatedHeader />
       <PhotoCarousel />
       <CeremonySection />
+      <BanqueteSection />
        <ProgramaBodaSection />
       <RSVPForm />
       <Footer />
