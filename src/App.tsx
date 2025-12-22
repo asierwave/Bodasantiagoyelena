@@ -641,8 +641,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import imgFrame5 from "./assets/banquete.jpeg";
 
-/* 🔗 ENLACE CORRECTO A GOOGLE MAPS */
-const CASA_BURGOS_URL = "https://maps.google.com/?cid=6180376183828684675";
+/* ✅ CORRECCIÓN: Enlace universal que abre la app de Maps o el navegador */
+const CASA_BURGOS_URL = "https://www.google.com/maps/search/?api=1&query=Casa+de+Burgos+Madrid+C+Principal+de+Provincias";
 
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -704,7 +704,7 @@ function BanqueteSection() {
 
       {/* IMAGEN */}
       <motion.div
-        className="flex justify-center w-full"
+        className="flex justify-center w-full relative z-0" // z-0 para que no tape al botón
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -720,8 +720,9 @@ function BanqueteSection() {
       {/* BOTÓN */}
       <motion.button
         onClick={handleNavigate}
+        // Agregado 'z-10 relative' para asegurar que sea clickeable
         className="bg-[#452746] px-[40px] py-[14px] rounded-[6px]
-                   text-neutral-100 font-bold cursor-pointer"
+                   text-neutral-100 font-bold cursor-pointer z-10 relative"
         whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
         whileTap={{ scale: 0.97 }}
         initial={{ opacity: 0, y: 20 }}
