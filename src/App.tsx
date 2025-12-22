@@ -639,61 +639,46 @@ function CeremonySection() {
 
 const CASA_BURGOS_URL = "https://maps.google.com/?q=Casa+de+Burgos+Madrid";
 
+
 function BanqueteSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1.05]);
-
   const handleNavigate = () => {
-    window.open(CASA_BURGOS_URL, "_blank", "noopener,noreferrer");
+    window.open(GOOGLE_MAPS_BANQUETE_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
     <div
       id="banquete"
-      ref={ref}
-      className="relative min-h-[100vh] w-full flex items-center justify-center overflow-hidden"
+      className="relative w-full flex justify-center px-[30px] md:px-[60px] py-[80px] md:py-[140px]"
     >
-      {/* IMAGEN (SE QUEDA TAL CUAL) */}
-      <motion.img
-        src={imgFrame5}
-        alt="Banquete"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ scale: imageScale }}
-      />
+      {/* CONTENEDOR IMAGEN */}
+      <div className="relative w-full max-w-[900px]">
+        {/* IMAGEN (NO SE TOCA) */}
+        <img
+          src={imgFrame5}
+          alt="Banquete"
+          className="w-full rounded-[16px] shadow-xl"
+        />
 
-      {/* OVERLAY SUAVE */}
-      <div className="absolute inset-0 bg-black/30" />
+        {/* TEXTO ENCIMA */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-[16px] text-center">
+          <p className="font-['Roboto_Slab',serif] text-white text-[18px] md:text-[20px]">
+            14:00
+          </p>
 
-      {/* CONTENIDO ENCIMA DE LA FOTO */}
-      <motion.div
-        className="relative z-10 flex flex-col items-center gap-[24px] text-center px-6"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <p className="font-['Roboto_Slab',serif] text-white text-[18px] md:text-[22px]">
-          Hora · <span className="font-bold">14:00</span>
-        </p>
+          <p className="font-['Roboto_Slab',serif] font-bold text-white text-[22px] md:text-[26px]">
+            Casa de Burgos
+          </p>
 
-        <p className="font-['Roboto_Slab',serif] font-bold text-white text-[28px] md:text-[36px] lg:text-[42px]">
-          Casa de Burgos
-        </p>
-
-        <motion.button
-          onClick={handleNavigate}
-          className="bg-[#452746] px-[36px] py-[14px] rounded-[6px] text-white font-bold"
-          whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Cómo llegar
-        </motion.button>
-      </motion.div>
+          <button
+            onClick={handleNavigate}
+            className="bg-[#452746] text-white font-['Inter',sans-serif] font-bold
+                       px-[32px] py-[10px] rounded-[4px]
+                       hover:bg-[#5a3358] transition"
+          >
+            Navega hasta allí
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
