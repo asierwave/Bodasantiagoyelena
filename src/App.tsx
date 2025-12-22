@@ -637,7 +637,8 @@ function CeremonySection() {
   );
 }
 
-const CASA_BURGOS_URL = "https://maps.google.com/?cid=6180376183828684675&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ";";
+const CASA_BURGOS_URL =
+  "https://maps.google.com/?cid=6180376183828684675&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ";
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
 
