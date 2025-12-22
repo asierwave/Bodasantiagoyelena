@@ -586,7 +586,7 @@ function CeremonySection() {
             >
               <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
                 <div className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full">
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[18px] md:text-[24px] lg:text-[28px] text-black text-center px-4">{`Os queremos invitar a `}</p>
+                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[18px] md:text-[24px] lg:text-[28px] text-black text-center px-4">{``}</p>
                 </div>
                 <p className="font-['Roboto_Slab',serif] font-light italic leading-[normal] relative shrink-0 text-[#452746] text-[52px] md:text-[78px] lg:text-[100px] text-center px-4">La ceremonia</p>
               </div>
