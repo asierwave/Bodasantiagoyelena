@@ -810,7 +810,7 @@ function RSVPForm() {
               <div className="box-border content-stretch flex gap-[8px] items-center overflow-clip px-0 py-[12px] relative rounded-[6px] shrink-0">
                 <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] lg:text-[17px] text-black">
                   <span>{`Marca la casilla `}</span>
-                  <span className="[text-underline-position:from-font] decoration-solid underline">con tus preferencias</span>
+                  <span>{`con tus preferencias`}</span>
                 </p>
               </div>
               <motion.div 
