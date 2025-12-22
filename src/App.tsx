@@ -4,7 +4,7 @@ import { Menu, X, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react"
 import { toast } from "sonner";
 import imgFrame2 from "./assets/fotoprincipal.jpeg";
 import imgFrame3 from "./assets/fotoiglesia.jpeg";
-import imgFrame3 from "./assets/orden-boda.jpeg";
+import imgFrame4 from "./assets/orden-boda.jpeg";
 
 const GOOGLE_MAPS_ADDRESS = "P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid";
 
