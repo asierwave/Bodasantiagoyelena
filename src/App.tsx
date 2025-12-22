@@ -607,15 +607,7 @@ function CeremonySection() {
           </div>
         </div>
       </div>
-      <motion.div 
-        className="h-[350px] md:h-[550px] overflow-clip relative rounded-[12px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] shrink-0 w-[calc(100%-40px)] md:w-[calc(100%-120px)] lg:w-[calc(100%-240px)] z-10"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
-        
-      </motion.div>
+      
       <motion.button
         onClick={handleNavigate}
         style={{
