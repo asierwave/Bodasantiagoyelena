@@ -637,22 +637,30 @@ function CeremonySection() {
   );
 }
 
-const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/dir/?api=1&destination=Ermita+de+la+Virgen+del+Puerto&destination_place_id=ChIJFZMU8HQoQg0REkK5D53WAU4";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import imgFrame5 from "./assets/banquete.jpeg";
+
+/* 🔗 ENLACE CORRECTO A GOOGLE MAPS */
+const CASA_BURGOS_URL = "https://maps.google.com/?cid=6180376183828684675";
 
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.05]);
+  const titleOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
 
   const handleNavigate = () => {
-    window.open(GOOGLE_MAPS_URL, '_blank', 'noopener,noreferrer');
+    window.open(CASA_BURGOS_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -694,7 +702,7 @@ function BanqueteSection() {
         </p>
       </motion.div>
 
-      {/* IMAGEN (IGUAL QUE PROGRAMA DE BODA) */}
+      {/* IMAGEN */}
       <motion.div
         className="flex justify-center w-full"
         initial={{ opacity: 0, y: 40 }}
@@ -709,7 +717,7 @@ function BanqueteSection() {
         />
       </motion.div>
 
-      {/* BOTÓN DEBAJO DE LA FOTO */}
+      {/* BOTÓN */}
       <motion.button
         onClick={handleNavigate}
         className="bg-[#452746] px-[40px] py-[14px] rounded-[6px]
@@ -728,6 +736,7 @@ function BanqueteSection() {
 }
 
 export default BanqueteSection;
+
 
 
 
