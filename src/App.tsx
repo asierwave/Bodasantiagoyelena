@@ -637,6 +637,10 @@ function CeremonySection() {
   );
 }
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import imgFrame5 from "./assets/banquete.jpeg";
+
 const CASA_BURGOS_URL =
   "https://maps.google.com/?cid=6180376183828684675";
 
