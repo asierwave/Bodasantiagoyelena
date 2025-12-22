@@ -598,8 +598,7 @@ function CeremonySection() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] md:text-[18px] lg:text-[20px] text-black text-center px-4">
-               
+              <div className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] md:text-[18px] lg:text-[20px] text-black text-center px-4 flex flex-col gap-[14px]">
                 <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">12.30</p>
                 <p className="font-bold underline [text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid text-[18px] md:text-[20px] lg:text-[22px]"> Ermita Virgen del Puerto. </p>
                 <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid.</p>
