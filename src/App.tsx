@@ -637,59 +637,67 @@ function CeremonySection() {
   );
 }
 
+const CASA_BURGOS_URL = "https://maps.google.com/?q=Casa+de+Burgos+Madrid";
+
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start end", "end start"]
   });
 
-  const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
-  const titleOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1.05]);
+
+  const handleNavigate = () => {
+    window.open(CASA_BURGOS_URL, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div
       id="banquete"
       ref={ref}
-      className="box-border flex flex-col items-center justify-center gap-[60px]
-                 min-h-[100vh] w-full px-[30px] md:px-[60px]
-                 py-[80px] md:py-[140px] bg-white relative"
+      className="relative min-h-[100vh] w-full flex items-center justify-center overflow-hidden"
     >
-      {/* TÍTULO */}
-      <motion.div
-        className="flex flex-col items-center"
-        style={{ y: titleY, opacity: titleOpacity }}
-      >
-        <p
-          className="font-['Roboto_Slab',serif] font-light italic
-                     text-[#452746] text-[52px] md:text-[78px] lg:text-[100px]
-                     text-center"
-        >
-          Banquete
-        </p>
-      </motion.div>
+      {/* IMAGEN (SE QUEDA TAL CUAL) */}
+      <motion.img
+        src={imgFrame5}
+        alt="Banquete"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ scale: imageScale }}
+      />
 
-      {/* IMAGEN */}
+      {/* OVERLAY SUAVE */}
+      <div className="absolute inset-0 bg-black/30" />
+
+      {/* CONTENIDO ENCIMA DE LA FOTO */}
       <motion.div
-        className="flex justify-center w-full"
+        className="relative z-10 flex flex-col items-center gap-[24px] text-center px-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <img
-          src={imgFrame5}
-          alt="Banquete"
-          className="w-full max-w-[700px] rounded-[16px] shadow-xl"
-        />
+        <p className="font-['Roboto_Slab',serif] text-white text-[18px] md:text-[22px]">
+          Hora · <span className="font-bold">14:00</span>
+        </p>
+
+        <p className="font-['Roboto_Slab',serif] font-bold text-white text-[28px] md:text-[36px] lg:text-[42px]">
+          Casa de Burgos
+        </p>
+
+        <motion.button
+          onClick={handleNavigate}
+          className="bg-[#452746] px-[36px] py-[14px] rounded-[6px] text-white font-bold"
+          whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Cómo llegar
+        </motion.button>
       </motion.div>
     </div>
   );
 }
+
 
 
 function ProgramaBodaSection() {
