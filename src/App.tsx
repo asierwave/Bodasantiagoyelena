@@ -602,9 +602,9 @@ function CeremonySection() {
     
     <p>12.30</p>
 
-    <p className="font-bold text-[18px] md:text-[20px] lg:text-[22px]">Ermita Virgen del Puerto.</p>
+    <p className="font-bold text-[18px] md:text-[20px] lg:text-[22px]">Ermita Virgen del Puerto</p>
 
-    <p>P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid.</p>
+    <p>P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid</p>
 
   </div>
 </motion.div>
