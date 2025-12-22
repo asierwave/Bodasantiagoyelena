@@ -657,10 +657,11 @@ function BanqueteSection() {
     <div
       id="banquete"
       ref={ref}
-      className="box-border flex flex-col items-center justify-center gap-[60px]
+      className="box-border flex flex-col items-center justify-center gap-[40px]
                  min-h-[100vh] w-full px-[30px] md:px-[60px]
                  py-[80px] md:py-[140px] bg-white relative"
     >
+
       {/* TÍTULO */}
       <motion.div
         className="flex flex-col items-center"
@@ -673,49 +674,53 @@ function BanqueteSection() {
         </p>
       </motion.div>
 
-      {/* IMAGEN + OVERLAY */}
+      {/* TEXTO ARRIBA */}
       <motion.div
-        className="relative flex justify-center w-full"
+        className="flex flex-col items-center gap-[20px] text-center"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <p className="font-['Roboto_Slab',serif] font-light text-[18px] md:text-[20px]">
+          14:00
+        </p>
+
+        <p className="font-['Roboto_Slab',serif] font-bold text-[20px] md:text-[22px]">
+          Casa de Burgos
+        </p>
+
+        <motion.button
+          onClick={handleNavigate}
+          className="bg-[#452746] px-[32px] py-[12px] rounded-[4px] cursor-pointer"
+          whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <p className="font-['Inter',sans-serif] font-bold text-neutral-100">
+            Navega hasta allí
+          </p>
+        </motion.button>
+      </motion.div>
+
+      {/* IMAGEN (IGUAL QUE PROGRAMA DE BODA) */}
+      <motion.div
+        className="flex justify-center w-full"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Imagen EXACTA como ProgramaBodaSection */}
         <img
           src={imgFrame5}
           alt="Banquete"
           className="w-full max-w-[700px] rounded-[16px] shadow-xl"
         />
-
-        {/* Overlay de texto */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-[16px]
-                        text-white text-center pointer-events-none">
-          <p className="font-['Roboto_Slab',serif] text-[22px] md:text-[26px]">
-            14:00
-          </p>
-
-          <p className="font-['Roboto_Slab',serif] font-bold text-[26px] md:text-[30px]">
-            Casa de Burgos
-          </p>
-
-          {/* Botón (reactiva eventos solo aquí) */}
-          <div className="pointer-events-auto mt-4">
-            <motion.button
-              onClick={handleNavigate}
-              className="bg-[#452746] px-[32px] py-[12px] rounded-[4px]
-                         text-neutral-100 font-['Inter',sans-serif] font-bold"
-              whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Navega hasta allí
-            </motion.button>
-          </div>
-        </div>
       </motion.div>
+
     </div>
   );
 }
+
 
 
 
