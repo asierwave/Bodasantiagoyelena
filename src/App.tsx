@@ -229,7 +229,7 @@ const scrollToSection = (sectionId: string) => {
           initial={{ opacity: 0, y: -50, scale:0 }}
           animate={{ opacity: 0.6, y: 0, scale: 1.5 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        >11-04-2026</motion.p>
+        >11.04.2026</motion.p>
       </motion.div>
     </div>
   );
