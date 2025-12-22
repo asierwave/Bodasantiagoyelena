@@ -534,7 +534,7 @@ function PhotoCarousel() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <p className="font-['Roboto_Slab',serif] font-light italic text-neutral-100 text-[32px] md:text-[44px] lg:text-[50px]">
-              Nuestros momentos
+              GALERIA FOTOS
             </p>
           </motion.div>
         </>
@@ -600,7 +600,8 @@ function CeremonySection() {
             >
               <div className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] md:text-[18px] lg:text-[20px] text-black text-center px-4">
                
-                <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid.</p>
+                <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid underline">12.30</p>
+                <p className="font-bold underline [text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-solid text-[16px] md:text-[19px] lg:text-[21px]"> Ermita Virgen del Puerto, 4, Centro, 28013 Madrid. </p>
               </div>
             </motion.div>
        
