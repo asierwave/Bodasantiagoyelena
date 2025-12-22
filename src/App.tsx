@@ -639,54 +639,93 @@ function CeremonySection() {
 
 const CASA_BURGOS_URL = "https://maps.google.com/?q=Casa+de+Burgos+Madrid";
 function BanqueteSection() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
+  const titleOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
   const handleNavigate = () => {
-    window.open(
-      "https://www.google.com/maps/dir/?api=1&destination=Casa+de+Burgos",
-      "_blank",
-      "noopener,noreferrer"
-    );
+    window.open(GOOGLE_MAPS_BANQUETE, "_blank", "noopener,noreferrer");
   };
 
   return (
     <div
       id="banquete"
+      ref={ref}
       className="box-border flex flex-col items-center justify-center gap-[60px]
                  min-h-[100vh] w-full px-[30px] md:px-[60px]
                  py-[80px] md:py-[140px] bg-white relative"
     >
-      {/* TEXTO SUPERIOR */}
-      <div className="flex flex-col items-center gap-[16px] text-center">
-        <p className="font-['Roboto_Slab',serif] text-[18px] md:text-[20px] text-black">
-          14:00
+      {/* TÍTULO */}
+      <motion.div
+        className="flex flex-col items-center"
+        style={{ y: titleY, opacity: titleOpacity }}
+      >
+        <p className="font-['Roboto_Slab',serif] font-light italic
+                      text-[#452746] text-[52px] md:text-[78px] lg:text-[100px]
+                      text-center">
+          Banquete
         </p>
+      </motion.div>
 
-        <p className="font-['Roboto_Slab',serif] font-bold text-[22px] md:text-[26px] text-black">
+      {/* TEXTO SUPERIOR */}
+      <motion.div
+        className="font-['Roboto_Slab',serif] font-light
+                   text-[16px] md:text-[18px] lg:text-[20px]
+                   text-black text-center flex flex-col gap-[20px]"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <p>14:00</p>
+
+        <p className="font-bold text-[18px] md:text-[20px] lg:text-[22px]">
           Casa de Burgos
         </p>
-      </div>
+      </motion.div>
 
-      {/* IMAGEN (IGUAL QUE PROGRAMA) */}
-      <div className="flex justify-center w-full">
+      {/* IMAGEN (IGUAL QUE PROGRAMA DE BODA) */}
+      <motion.div
+        className="flex justify-center w-full"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
         <img
           src={imgFrame5}
           alt="Banquete"
           className="w-full max-w-[700px] rounded-[16px] shadow-xl"
         />
-      </div>
+      </motion.div>
 
-      {/* BOTÓN ABAJO */}
-      <button
+      {/* BOTÓN */}
+      <motion.button
         onClick={handleNavigate}
-        className="bg-[#452746] text-white font-['Inter',sans-serif] font-bold
-                   px-[40px] py-[12px] rounded-[4px]
-                   hover:bg-[#5a3358] transition"
+        className="bg-[#452746] px-[40px] py-[14px] rounded-[6px]
+                   text-neutral-100 font-bold cursor-pointer"
+        whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
+        whileTap={{ scale: 0.97 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
       >
         Navega hasta allí
-      </button>
+      </motion.button>
     </div>
   );
 }
-
 
 
 
