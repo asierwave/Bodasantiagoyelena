@@ -560,70 +560,98 @@ function CeremonySection() {
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.05]);
 
   const handleNavigate = () => {
-    window.open(GOOGLE_MAPS_URL, '_blank', 'noopener,noreferrer');
+    window.open(GOOGLE_MAPS_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <div 
+    <div
       id="ceremonia"
-      ref={ref} 
-      className="box-border content-stretch flex flex-col gap-[40px] md:gap-[120px] min-h-[100vh] items-center overflow-clip pb-[40px] md:pb-[20px] pt-[40px] md:pt-[60px] px-0 relative shrink-0 w-full"
+      ref={ref}
+      className="box-border content-stretch flex flex-col gap-[40px] md:gap-[120px]
+                 min-h-[100vh] items-center overflow-clip
+                 pb-[40px] md:pb-[20px] pt-[40px] md:pt-[60px]
+                 px-0 relative shrink-0 w-full"
     >
+      {/* FONDO DECORATIVO (SE MANTIENE) */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
-        <motion.img 
-          alt="" 
-          className="absolute max-w-none object-50%-50% object-cover size-full opacity-40" 
+        <motion.img
+          alt=""
+          className="absolute max-w-none object-cover size-full opacity-40"
           src={imgFrame3}
           style={{ scale: imageScale }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
       </div>
+
+      {/* CONTENIDO */}
       <div className="bg-gradient-to-b from-[#f5f5f5] relative shrink-0 to-[rgba(245,245,245,0)] w-full z-10">
         <div className="flex flex-col items-center justify-center size-full">
-          <div className="box-border content-stretch flex flex-col gap-[24px] items-center justify-center px-[30px] md:px-[60px] lg:px-[120px] xl:px-[180px] py-[60px] md:py-[160px] relative w-full">
-            <motion.div 
-              className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full"
+          <div className="box-border content-stretch flex flex-col gap-[24px]
+                          items-center justify-center
+                          px-[30px] md:px-[60px] lg:px-[120px] xl:px-[180px]
+                          py-[60px] md:py-[160px] relative w-full">
+
+            {/* TÍTULO */}
+            <motion.div
+              className="content-stretch flex flex-col gap-[6px] items-center justify-center relative w-full"
               style={{ y: titleY, opacity: titleOpacity }}
             >
-              <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
-                <div className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full">
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[18px] md:text-[24px] lg:text-[28px] text-black text-center px-4">{``}</p>
-                </div>
-                <p className="font-['Roboto_Slab',serif] font-light italic leading-[normal] relative shrink-0 text-[#452746] text-[52px] md:text-[78px] lg:text-[100px] text-center px-4">Ceremonia</p>
+              <p className="font-['Roboto_Slab',serif] font-light italic
+                            text-[#452746]
+                            text-[52px] md:text-[78px] lg:text-[100px]
+                            text-center px-4">
+                Ceremonia
+              </p>
+            </motion.div>
+
+            {/* TEXTO */}
+            <motion.div
+              className="content-stretch flex flex-col gap-[6px]
+                         items-center justify-center relative w-full"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="font-['Roboto_Slab',serif] font-light
+                              text-[15px] md:text-[18px] lg:text-[20px]
+                              text-black text-center px-4
+                              flex flex-col gap-[24px]">
+                <p>12.30</p>
+                <p className="font-bold text-[18px] md:text-[20px] lg:text-[22px]">
+                  Ermita Virgen del Puerto
+                </p>
+                <p>P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid</p>
               </div>
             </motion.div>
-            <motion.div
-  className="content-stretch flex flex-col gap-[6px] items-center justify-center relative shrink-0 w-full"
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, margin: '-100px' }}
-  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
->
-  <div className="font-['Roboto_Slab',serif] font-light relative shrink-0 text-[15px] md:text-[18px] lg:text-[20px] text-black text-center px-4 flex flex-col gap-[24px]">
-    
-    <p>12.30</p>
-
-    <p className="font-bold text-[18px] md:text-[20px] lg:text-[22px]">Ermita Virgen del Puerto</p>
-
-    <p>P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid</p>
-
-  </div>
-</motion.div>
-
-       
           </div>
         </div>
       </div>
-      
+
+      {/* IMAGEN PRINCIPAL — IGUAL QUE BANQUETE */}
+      <motion.div
+        className="flex justify-center w-full relative z-10"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <img
+          src={imgFrame3}
+          alt="Ceremonia"
+          className="w-full max-w-[700px] rounded-[16px] shadow-xl"
+        />
+      </motion.div>
+
+      {/* BOTÓN */}
       <motion.button
         onClick={handleNavigate}
-        style={{
-          width: '50vw',
-          height: 'auto',
-          padding: '20px 40px'
-        }}
-        className="bg-[#452746] box-border content-stretch flex flex-col gap-[8px] items-center justify-center overflow-clip px-[32px] py-[10px] md:py-[12px] relative rounded-[4px] shrink-0 z-10 cursor-pointer"
+        style={{ width: "50vw", padding: "20px 40px" }}
+        className="bg-[#452746] box-border flex flex-col gap-[8px]
+                   items-center justify-center
+                   px-[32px] py-[10px] md:py-[12px]
+                   rounded-[4px] z-10 cursor-pointer"
         whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.3 }}
@@ -631,11 +659,16 @@ function CeremonySection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <p className="font-['Inter',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] text-neutral-100 text-center whitespace-nowrap">Navega hasta allí</p>
+        <p className="font-['Inter',sans-serif] font-bold
+                      text-[15px] md:text-[16px]
+                      text-neutral-100 text-center whitespace-nowrap">
+          Navega hasta allí
+        </p>
       </motion.button>
     </div>
   );
 }
+
 
 const CASA_BURGOS_URL =
   "https://www.google.com/maps/dir/40.0971986,-3.692763/Casa+de+Burgos,+Calle+Principal+de+Provincias,+Madrid/@40.2564507,-4.0260254,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0xd422809aacbec27:0x55c51b64e7649f83!2m2!1d-3.7307501!2d40.414556?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3Dhttps://www.google.com/maps/dir/40.0971986,-3.692763/Casa+de+Burgos,+Calle+Principal+de+Provincias,+Madrid/@40.2564507,-4.0260254,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0xd422809aacbec27:0x55c51b64e7649f83!2m2!1d-3.7307501!2d40.414556?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";
@@ -1040,7 +1073,7 @@ function RSVPForm() {
                 <div className="flex flex-row items-center overflow-clip rounded-[inherit] size-full">
                   <input
                     type="text"
-                    placeholder="Nombre de la canción"
+                    placeholder="Deja aquí tu mensaje "
                     value={formData.songSuggestion}
                     onChange={(e) => setFormData({ ...formData, songSuggestion: e.target.value })}
                     className="box-border content-stretch flex gap-[8px] items-center px-[14px] md:px-[16px] py-[10px] md:py-[12px] relative w-full bg-transparent border-none outline-none font-['Roboto_Slab',serif] font-light leading-[normal] not-italic text-[15px] md:text-[16px] lg:text-[17px] text-black placeholder:text-black/50"
