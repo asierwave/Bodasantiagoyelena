@@ -641,8 +641,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import imgFrame5 from "./assets/banquete.jpeg";
 
-
-const CASA_BURGOS_URL = "https://www.google.com/maps/search/?api=1&query=Casa+de+Burgos+Madrid";
+/* ✅ CORRECCIÓN 1: Enlace directo a "Cómo llegar" a Casa de Burgos */
+const CASA_BURGOS_URL = "https://www.google.com/maps/dir/?api=1&destination=Casa+de+Burgos+Madrid";
 
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -669,7 +669,7 @@ function BanqueteSection() {
       ref={ref}
       className="min-h-[100vh] w-full px-[30px] md:px-[60px]
                  py-[80px] md:py-[140px] bg-white
-                 flex flex-col items-center gap-[60px]"
+                 flex flex-col items-center gap-[60px] relative"
     >
       {/* TÍTULO */}
       <motion.div style={{ y: titleY, opacity: titleOpacity }}>
@@ -695,21 +695,30 @@ function BanqueteSection() {
       </motion.div>
 
       {/* IMAGEN */}
-      <img
+      <motion.img 
         src={imgFrame5}
         alt="Banquete"
-        className="w-full max-w-[700px] rounded-[16px] shadow-xl"
+        className="w-full max-w-[700px] rounded-[16px] shadow-xl relative z-0"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
       />
 
-      {/* BOTÓN */}
-      <button
+      {/* ✅ CORRECCIÓN 2: 
+         - Usamos motion.button para animaciones suaves.
+         - Añadimos 'z-10 relative' para que la imagen no tape el clic.
+         - Añadimos 'cursor-pointer'.
+      */}
+      <motion.button
         onClick={handleNavigate}
         className="bg-[#452746] px-[40px] py-[14px]
-                   rounded-[6px] text-white font-bold
-                   hover:bg-[#5a3358] transition"
+                   rounded-[6px] text-white font-bold cursor-pointer
+                   z-10 relative shadow-lg"
+        whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
+        whileTap={{ scale: 0.95 }}
       >
         Navega hasta allí
-      </button>
+      </motion.button>
     </div>
   );
 }
