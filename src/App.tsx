@@ -652,7 +652,7 @@ function BanqueteSection() {
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.05]);
 
   const handleNavigate = () => {
-    window.open(GOOGLE_MAPS_URL, '_blank', 'noopener,noreferrer');
+    window.open(CASA_BURGOS_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
