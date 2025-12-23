@@ -637,28 +637,21 @@ function CeremonySection() {
   );
 }
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import imgFrame5 from "./assets/banquete.jpeg";
-
-// Enlace universal de Google Maps
-const CASA_BURGOS_URL =
-  "https://www.google.com/maps/dir/?api=1&destination=Casa+de+Burgos,+Madrid&destination_place_id=ChIJ3xwXQ1soQg0R3m0sN1kKcXc";
-
+const GOOGLE_MAPS_URL =
+"https://www.google.com/maps/dir//Casa+de+Burgos,+Calle+Principal+de+Provincias,+3,+Madrid,+Spain/data=!4m9!4m8!1m0!1m5!1m1!19sChIJJ-zLqgkoQg0Rg59k52QbxVU!2m2!1d-3.7308011999999997!2d40.4144639!3e0"
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
-
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start end", "end start"]
   });
 
   const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.05]);
 
   const handleNavigate = () => {
-    console.log("¡Click recibido!"); // Mira la consola (F12) para ver si sale esto
-    window.open(CASA_BURGOS_URL, "_blank", "noopener,noreferrer");
+    window.open(GOOGLE_MAPS_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -715,23 +708,24 @@ function BanqueteSection() {
       {/* BOTÓN - Solución aquí */}
       <motion.button
         onClick={handleNavigate}
-        // Clases CLAVE: z-50 y relative para ponerlo encima de todo
-        className="bg-[#452746] px-[40px] py-[14px] rounded-[6px]
-                   text-neutral-100 font-bold cursor-pointer
-                   relative z-50 shadow-lg select-none"
+        style={{
+          width: '50vw',
+          height: 'auto',
+          padding: '20px 40px'
+        }}
+        className="bg-[#452746] box-border content-stretch flex flex-col gap-[8px] items-center justify-center overflow-clip px-[32px] py-[10px] md:py-[12px] relative rounded-[4px] shrink-0 z-10 cursor-pointer"
         whileHover={{ scale: 1.05, backgroundColor: "#5a3358" }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 20 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-100px" }}
       >
-        Navega hasta allí
+        <p className="font-['Inter',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[15px] md:text-[16px] text-neutral-100 text-center whitespace-nowrap">Navega hasta allí</p>
       </motion.button>
     </div>
   );
 }
-
-export default BanqueteSection;
 
 function ProgramaBodaSection() {
   const ref = useRef<HTMLDivElement>(null);
