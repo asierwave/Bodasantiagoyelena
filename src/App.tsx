@@ -637,8 +637,9 @@ function CeremonySection() {
   );
 }
 
-const GOOGLE_MAPS_URL =
-"https://www.google.com/maps/dir//Casa+de+Burgos,+Calle+Principal+de+Provincias,+3,+Madrid,+Spain/data=!4m9!4m8!1m0!1m5!1m1!19sChIJJ-zLqgkoQg0Rg59k52QbxVU!2m2!1d-3.7308011999999997!2d40.4144639!3e0"
+const CASA_BURGOS_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=Casa+de+Burgos,+Madrid&destination_place_id=ChIJ3xwXQ1soQg0R3m0sN1kKcXc";
+
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
