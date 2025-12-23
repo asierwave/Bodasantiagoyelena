@@ -117,6 +117,25 @@ const scrollToSection = (sectionId: string) => {
             >
               <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Confirma tu asistencia</p>
             </div>
+
+            <div 
+  className="cursor-pointer group"
+  onClick={() => scrollToSection("banquete")}
+>
+  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">
+    Banquete
+  </p>
+</div>
+
+<div 
+  className="cursor-pointer group"
+  onClick={() => scrollToSection("programa")}
+>
+  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">
+    Programa boda
+  </p>
+</div>
+
             <div className="flex gap-2 items-center">
               <a 
                 href={WHATSAPP_URL_SANTI}
@@ -189,6 +208,29 @@ const scrollToSection = (sectionId: string) => {
                 >
                   <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">Confirma tu asistencia</p>
                 </div>
+
+                <div 
+  className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
+  onClick={() => {
+    setIsMenuOpen(false);
+    scrollToSection("banquete");
+  }}
+>
+  <p className="text-[16px] text-black text-center">Banquete</p>
+</div>
+
+<div 
+  className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
+  onClick={() => {
+    setIsMenuOpen(false);
+    scrollToSection("programa");
+  }}
+>
+  <p className="text-[16px] text-black text-center">Programa boda</p>
+</div>
+
+
+                
                 <div className="flex flex-col gap-2">
                   <a 
                     href={WHATSAPP_URL_SANTI}
