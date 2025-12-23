@@ -99,120 +99,129 @@ const scrollToSection = (sectionId: string) => {
             <div className="content-stretch flex flex-col gap-[4px] items-center relative shrink-0">
               <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] lg:text-[28px] text-[#f5f5f5]/60 text-center">E&S</p>
             </div>
-            <div 
-              className="cursor-pointer group"
-              onClick={() => scrollToSection("carousel")}
-            >
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Nuestros momentos</p>
-            </div>
-            <div 
-              className="cursor-pointer group"
-              onClick={() => scrollToSection("ceremonia")}
-            >
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">La ceremonia</p>
-            </div>
-            <div 
-              className="cursor-pointer group"
-              onClick={() => scrollToSection("rsvp")}
-            >
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Confirma tu asistencia</p>
-            </div>
-            <div className="flex gap-2 items-center">
-              <a 
-                href={WHATSAPP_URL_SANTI}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#452746] box-border content-stretch flex flex-row gap-[6px] items-center justify-center overflow-clip px-[20px] lg:px-[24px] py-[8px] lg:py-[10px] relative rounded-[4px] shrink-0 cursor-pointer hover:bg-[#5a3358] transition-colors"
-                title="Mensaje a Santi"
-              >
-                <MessageCircle size={16} className="text-neutral-100" />
-                <p className="font-['Inter',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[13px] lg:text-[14px] text-neutral-100 text-center">Santi</p>
-              </a>
-              <a 
-                href={WHATSAPP_URL_ELENA}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#452746] box-border content-stretch flex flex-row gap-[6px] items-center justify-center overflow-clip px-[20px] lg:px-[24px] py-[8px] lg:py-[10px] relative rounded-[4px] shrink-0 cursor-pointer hover:bg-[#5a3358] transition-colors"
-                title="Mensaje a Elena"
-              >
-                <MessageCircle size={16} className="text-neutral-100" />
-                <p className="font-['Inter',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[13px] lg:text-[14px] text-neutral-100 text-center">Elena</p>
-              </a>
-            </div>
-          </div>
+            {/* Desktop Menu */}
+<div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[20px] py-[8px] relative w-full h-fit">
 
-          {/* Mobile Menu */}
-          <div className={`md:hidden flex items-center justify-between px-[20px] relative w-full ${isMenuOpen ? 'py-[8px]': 'py-[8px]'}`}>
-            <div className="content-stretch flex flex-col gap-[4px] items-center relative">
-              <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[22px] text-[#f5f5f5] text-center">E&S</p>
-            </div>
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-[#452746] hover:bg-[#452746]/10 rounded-md transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
+  <div className="content-stretch flex flex-col gap-[4px] items-center relative shrink-0">
+    <p className="font-['Roboto_Slab',serif] font-light leading-[normal] not-italic relative shrink-0 text-[24px] lg:text-[28px] text-[#f5f5f5]/60 text-center">E&S</p>
+  </div>
 
-        {/* Mobile Menu Dropdown */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="md:hidden overflow-hidden bg-[#f5f5f5]   z-50"
-            >
-              <div className="flex flex-col gap-3 px-[20px] py-[16px]">
-       <div 
-  className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
-  onClick={() => {
-    setIsMenuOpen(false);       // 1. Cierra el menú
-    scrollToSection("carousel"); // 2. Hace scroll al ancla
-  }}
->
-  <p className="text-[16px] text-black text-center">Nuestros momentos</p>
+  <div className="cursor-pointer group" onClick={() => scrollToSection("carousel")}>
+    <p className="font-['Roboto_Slab',serif] font-light leading-[normal] text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Nuestros momentos</p>
+  </div>
+
+  <div className="cursor-pointer group" onClick={() => scrollToSection("ceremonia")}>
+    <p className="font-['Roboto_Slab',serif] font-light leading-[normal] text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">La ceremonia</p>
+  </div>
+
+  <div className="cursor-pointer group" onClick={() => scrollToSection("rsvp")}>
+    <p className="font-['Roboto_Slab',serif] font-light leading-[normal] text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Confirma tu asistencia</p>
+  </div>
+
+  <div className="cursor-pointer group" onClick={() => scrollToSection("banquete")}>
+    <p className="font-['Roboto_Slab',serif] font-light leading-[normal] text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Banquete</p>
+  </div>
+
+  <div className="cursor-pointer group" onClick={() => scrollToSection("programa")}>
+    <p className="font-['Roboto_Slab',serif] font-light leading-[normal] text-[15px] lg:text-[16px] text-[#f5f5f5] text-center transition-all duration-300 group-hover:underline">Programa boda</p>
+  </div>
+
+  <div className="flex gap-2 items-center">
+    <a 
+      href={WHATSAPP_URL_SANTI}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-[#452746] flex flex-row gap-[6px] items-center justify-center px-[20px] lg:px-[24px] py-[8px] lg:py-[10px] rounded-[4px] cursor-pointer hover:bg-[#5a3358] transition-colors"
+      title="Mensaje a Santi"
+    >
+      <MessageCircle size={16} className="text-neutral-100" />
+      <p className="font-['Inter',sans-serif] font-bold text-[13px] lg:text-[14px] text-neutral-100 text-center">Santi</p>
+    </a>
+    <a 
+      href={WHATSAPP_URL_ELENA}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-[#452746] flex flex-row gap-[6px] items-center justify-center px-[20px] lg:px-[24px] py-[8px] lg:py-[10px] rounded-[4px] cursor-pointer hover:bg-[#5a3358] transition-colors"
+      title="Mensaje a Elena"
+    >
+      <MessageCircle size={16} className="text-neutral-100" />
+      <p className="font-['Inter',sans-serif] font-bold text-[13px] lg:text-[14px] text-neutral-100 text-center">Elena</p>
+    </a>
+  </div>
 </div>
 
-                <div 
-                  className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
-                  onClick={() => scrollToSection("ceremonia")}
-                >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">La ceremonia</p>
-                </div>
-                <div 
-                  className="flex content-stretch flex-col gap-[4px] items-center relative py-2 cursor-pointer"
-                  onClick={() => scrollToSection("rsvp")}
-                >
-                  <p className="font-['Roboto_Slab',serif] font-light leading-[normal] relative shrink-0 text-[16px] text-black text-center">Confirma tu asistencia</p>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <a 
-                    href={WHATSAPP_URL_SANTI}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#452746] box-border content-stretch flex flex-row gap-[8px] items-center justify-center overflow-clip px-[32px] py-[10px] relative rounded-[4px] cursor-pointer hover:bg-[#5a3358] transition-colors"
-                  >
-                    <MessageCircle size={18} className="text-neutral-100" />
-                    <p className="font-['Inter',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[14px] text-neutral-100 text-center">Mensaje a Santi</p>
-                  </a>
-                  <a 
-                    href={WHATSAPP_URL_ELENA}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#452746] box-border content-stretch flex flex-row gap-[8px] items-center justify-center overflow-clip px-[32px] py-[10px] relative rounded-[4px] cursor-pointer hover:bg-[#5a3358] transition-colors"
-                  >
-                    <MessageCircle size={18} className="text-neutral-100" />
-                    <p className="font-['Inter',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[14px] text-neutral-100 text-center">Mensaje a Elena</p>
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+{/* Mobile Menu */}
+<div className={`md:hidden flex items-center justify-between px-[20px] py-[8px] relative w-full`}>
+  <div className="content-stretch flex flex-col gap-[4px] items-center relative">
+    <p className="font-['Roboto_Slab',serif] font-light leading-[normal] text-[22px] text-[#f5f5f5] text-center">E&S</p>
+  </div>
+  <button 
+    onClick={() => setIsMenuOpen(!isMenuOpen)}
+    className="p-2 text-[#452746] hover:bg-[#452746]/10 rounded-md transition-colors"
+    aria-label="Toggle menu"
+  >
+    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+  </button>
+</div>
+
+{/* Mobile Menu Dropdown */}
+<AnimatePresence>
+  {isMenuOpen && (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: "auto", opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className="md:hidden overflow-hidden bg-[#f5f5f5] z-50"
+    >
+      <div className="flex flex-col gap-3 px-[20px] py-[16px]">
+
+        <div className="flex flex-col items-center py-2 cursor-pointer" onClick={() => { setIsMenuOpen(false); scrollToSection("carousel"); }}>
+          <p className="text-[16px] text-black text-center">Nuestros momentos</p>
+        </div>
+
+        <div className="flex flex-col items-center py-2 cursor-pointer" onClick={() => { setIsMenuOpen(false); scrollToSection("ceremonia"); }}>
+          <p className="text-[16px] text-black text-center">La ceremonia</p>
+        </div>
+
+        <div className="flex flex-col items-center py-2 cursor-pointer" onClick={() => { setIsMenuOpen(false); scrollToSection("rsvp"); }}>
+          <p className="text-[16px] text-black text-center">Confirma tu asistencia</p>
+        </div>
+
+        <div className="flex flex-col items-center py-2 cursor-pointer" onClick={() => { setIsMenuOpen(false); scrollToSection("banquete"); }}>
+          <p className="text-[16px] text-black text-center">Banquete</p>
+        </div>
+
+        <div className="flex flex-col items-center py-2 cursor-pointer" onClick={() => { setIsMenuOpen(false); scrollToSection("programa"); }}>
+          <p className="text-[16px] text-black text-center">Programa boda</p>
+        </div>
+
+        <div className="flex flex-col gap-2 mt-2">
+          <a 
+            href={WHATSAPP_URL_SANTI}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#452746] flex flex-row gap-[8px] items-center justify-center px-[32px] py-[10px] rounded-[4px] cursor-pointer hover:bg-[#5a3358] transition-colors"
+          >
+            <MessageCircle size={18} className="text-neutral-100" />
+            <p className="font-['Inter',sans-serif] font-bold text-[14px] text-neutral-100 text-center">Mensaje a Santi</p>
+          </a>
+          <a 
+            href={WHATSAPP_URL_ELENA}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#452746] flex flex-row gap-[8px] items-center justify-center px-[32px] py-[10px] rounded-[4px] cursor-pointer hover:bg-[#5a3358] transition-colors"
+          >
+            <MessageCircle size={18} className="text-neutral-100" />
+            <p className="font-['Inter',sans-serif] font-bold text-[14px] text-neutral-100 text-center">Mensaje a Elena</p>
+          </a>
+        </div>
+
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
       </div>
       <motion.div 
         className="basis-0 content-stretch flex flex-col font-['Roboto_Slab',serif] font-light gap-[12px] grow items-center justify-center leading-[normal] min-h-px min-w-px relative shrink-0 text-[28px] md:text-[40px] lg:text-[48px] px-4 z-[5]"
