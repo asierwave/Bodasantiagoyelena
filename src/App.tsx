@@ -643,9 +643,7 @@ import imgFrame5 from "./assets/banquete.jpeg";
 
 // Enlace universal de Google Maps
 const CASA_BURGOS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Casa+de+Burgos+Madrid+C+Principal+de+Provincias";
-
-
+  "https://www.google.com/maps/dir/?api=1&destination=Casa+de+Burgos,+Madrid&destination_place_id=ChIJ3xwXQ1soQg0R3m0sN1kKcXc";
 
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
