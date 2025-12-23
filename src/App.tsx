@@ -642,7 +642,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import imgFrame5 from "./assets/banquete.jpeg";
 
 // Enlace universal de Google Maps
-const CASA_BURGOS_URL = "https://www.google.com/maps/search/?api=1&query=Casa+de+Burgos+Madrid+C+Principal+de+Provincias";
+const CASA_BURGOS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Casa+de+Burgos+Madrid+C+Principal+de+Provincias";
+
+
 
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
