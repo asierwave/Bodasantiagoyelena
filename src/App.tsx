@@ -572,17 +572,7 @@ function CeremonySection() {
                  pb-[40px] md:pb-[20px] pt-[40px] md:pt-[60px]
                  px-0 relative shrink-0 w-full"
     >
-      {/* FONDO DECORATIVO (SE MANTIENE) */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
-        <motion.img
-          alt=""
-          className="absolute max-w-none object-cover size-full opacity-40"
-          src={imgFrame3}
-          style={{ scale: imageScale }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
-      </div>
+     
 
       {/* CONTENIDO */}
       <div className="bg-gradient-to-b from-[#f5f5f5] relative shrink-0 to-[rgba(245,245,245,0)] w-full z-10">
