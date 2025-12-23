@@ -638,7 +638,7 @@ function CeremonySection() {
 }
 
 const CASA_BURGOS_URL =
-  "https://www.google.com/maps/dir/40.0971986,-3.692763/Casa+de+Burgos,+Calle+Principal+de+Provincias,+Madrid/@40.2564507,-4.0260254,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0xd422809aacbec27:0x55c51b64e7649f83!2m2!1d-3.7307501!2d40.414556?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";
+  "https://www.google.com/maps/dir/40.0971986,-3.692763/Casa+de+Burgos,+Calle+Principal+de+Provincias,+Madrid/@40.2564507,-4.0260254,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0xd422809aacbec27:0x55c51b64e7649f83!2m2!1d-3.7307501!2d40.414556?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3Dhttps://www.google.com/maps/dir/40.0971986,-3.692763/Casa+de+Burgos,+Calle+Principal+de+Provincias,+Madrid/@40.2564507,-4.0260254,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0xd422809aacbec27:0x55c51b64e7649f83!2m2!1d-3.7307501!2d40.414556?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";
 
 function BanqueteSection() {
   const ref = useRef<HTMLDivElement>(null);
