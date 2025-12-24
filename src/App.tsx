@@ -92,7 +92,7 @@ const scrollToSection = (sectionId: string) => {
         {/* Degradado para opacar ligeramente la imagen */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
       </div>
-      <div className="bg-[#000000] relative shrink-0 w-full z-10 pt-[4px]" style={isMenuOpen ? { background:'#f5f5f540', position: 'sticky', top: 0 } : !isMenuOpen ? { background: '#f5f5f540'} : undefined}>
+      <div className="bg-[#000000] relative shrink-0 w-full z-10 pt-[4px]" style={isMenuOpen ? { background:'#f5f5f5', position: 'sticky', top: 0 } : !isMenuOpen ? { background: '#f5f5f5'} : undefined}>
         <div className="flex flex-row items-center p-[0px]">
           {/* Desktop Menu */}
          <div className="hidden md:flex box-border content-stretch flex-wrap items-center justify-between gap-auto lg:gap-5 px-[20px] py-[8px] relative w-full h-fit">
@@ -579,8 +579,7 @@ function PhotoCarousel() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <p className="font-['Roboto_Slab',serif] font-light italic text-neutral-100 text-[32px] md:text-[44px] lg:text-[50px]">
-              Galería fotos
-            </p>
+  Fotos            </p>
           </motion.div>
         </>
       )}
