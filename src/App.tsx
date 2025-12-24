@@ -6,6 +6,7 @@ import imgFrame2 from "./assets/fotoprincipal.jpeg";
 import imgFrame3 from "./assets/fotoiglesia.jpeg";
 import imgFrame4 from "./assets/orden-boda.jpeg";
 import imgFrame5 from "./assets/banquete.jpeg";
+import imgFrame6 from "./assets/fotobanquete2.jpg";
 
 const GOOGLE_MAPS_ADDRESS = "P.º de la Virgen del Puerto, 4, Centro, 28013 Madrid";
 
@@ -765,7 +766,7 @@ function BanqueteSection() {
         transition={{ duration: 0.8 }}
       >
         <img
-          src={imgFrame5}
+          src={imgFrame6}
           alt="Banquete"
           className="w-full max-w-[700px] rounded-[16px] shadow-xl"
         />
