@@ -807,14 +807,16 @@ function ProgramaBodaSection() {
     <div
       id="programa"
       ref={ref}
-      className="box-border flex flex-col items-center justify-center gap-[60px]
+      className="flex flex-col items-center justify-center gap-[60px]
                  min-h-[100vh] w-full px-[30px] md:px-[60px]
                  py-[80px] md:py-[140px] bg-white relative"
+        style={{background: '#f5f5f5' }}
+
     >
       {/* TÍTULO */}
       <motion.div
         className="flex flex-col items-center"
-        style={{ y: titleY, opacity: titleOpacity }}
+        style={{ y: titleY, opacity: titleOpacity, background: '#f5f5f5' }}
       >
         <p className="font-['Roboto_Slab',serif] font-light italic
                       text-[#452746] text-[52px] md:text-[78px] lg:text-[100px]
@@ -835,7 +837,9 @@ function ProgramaBodaSection() {
         <img
           src={imgFrame4} 
           alt="Programa de la boda"
-          className="w-full max-w-[700px] rounded-[16px] shadow-xl"
+          className="w-full max-w-[700px] rounded-[16px]"
+                  style={{background: '#f5f5f5' }}
+
         />
       </motion.div>
     </div>
@@ -1155,12 +1159,15 @@ function Footer() {
 export default function App() {
   return (
     <div className="content-stretch flex flex-col items-start relative size-full bg-white">
-      <AnimatedHeader />
-      <PhotoCarousel />
+
+            <AnimatedHeader />
+
+            <ProgramaBodaSection />
+
       <CeremonySection />
-      <BanqueteSection />
-       <ProgramaBodaSection />
-      <RSVPForm />
+       <BanqueteSection />
+        <RSVPForm />
+      <PhotoCarousel />
       <Footer />
     </div>
   );
