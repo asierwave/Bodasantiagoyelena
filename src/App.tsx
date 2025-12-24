@@ -168,7 +168,7 @@ const scrollToSection = (sectionId: string) => {
             </div>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-[#452746] hover:bg-[#452746]/10 rounded-md transition-colors"
+              className="p-2 text-[#2c2c2c] hover:bg-[#2c2c2c]/10 rounded-md transition-colors"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
