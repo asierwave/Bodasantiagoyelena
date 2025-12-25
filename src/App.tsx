@@ -438,110 +438,97 @@ function PhotoCarousel() {
 
   return (
     <motion.div
-      id="carousel"
-      style={{ opacity, scale }}
-      className="relative w-full py-[80px] md:py-[120px] z-20"
+  id="carousel"
+  style={{ opacity, scale }}
+  className="relative w-full py-[80px] md:py-[120px] z-20"
+>
+  {/* CONTENEDOR PRINCIPAL */}
+  <div className="relative w-full flex justify-center items-center">
+    {/* CARRUSEL */}
+    <div
+      className="relative w-full max-w-[900px] h-[400px] md:h-[600px]
+                  overflow-hidden flex items-center justify-center"
     >
-      {/* CONTENEDOR PRINCIPAL */}
-      <div className="relative w-full flex justify-center items-center">
-        {/* BOTÓN IZQUIERDO */}
-        <motion.button
-          onClick={handlePrevClick}
-         <motion.button
-  onClick={handlePrevClick}
-  className="
-    absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full bg-white/90 p-3 rounded-full hadow-lg z-50
-  "
->
-  <ChevronLeft />
-</motion.button>
+      {/* BOTÓN IZQUIERDO */}
+      <motion.button
+        onClick={handlePrevClick}
+        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 p-3 rounded-full shadow-lg z-50"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <ChevronLeft className="w-6 h-6 text-[#452746]" />
+      </motion.button>
 
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <ChevronLeft className="w-6 h-6 text-[#452746]" />
-        </motion.button>
+      {/* BOTÓN DERECHO */}
+      <motion.button
+        onClick={handleNextClick}
+        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 p-3 rounded-full shadow-lg z-50"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <ChevronRight className="w-6 h-6 text-[#452746]" />
+      </motion.button>
 
-        {/* CARRUSEL */}
-        <div className="relative w-full max-w-[900px] h-[400px] md:h-[600px]
-                        overflow-hidden flex items-center justify-center">
-          <AnimatePresence initial={false} mode="popLayout">
-            {getVisibleItems().map(({ index, offset }) => {
-              const item = carouselMedia[index];
+      {/* SLIDES */}
+      <AnimatePresence initial={false} mode="popLayout">
+        {getVisibleItems().map(({ index, offset }) => {
+          const item = carouselMedia[index];
 
-              return (
-                <motion.div
-                  key={index}
-                  className="absolute flex items-center justify-center"
-                  initial={{
-                    x: `${offset * 100}%`,
-                    scale: offset === 0 ? 1 : 0.85,
-                    opacity: offset === 0 ? 1 : 0.6,
-                    zIndex: offset === 0 ? 10 : 5,
-                  }}
-                  animate={{
-                    x: `${offset * 100}%`,
-                    scale: offset === 0 ? 1 : 0.85,
-                    opacity: offset === 0 ? 1 : 0.6,
-                    zIndex: offset === 0 ? 10 : 5,
-                  }}
-                  transition={{
-                    duration: 0.6,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  style={{
-                    width: offset === 0 ? "90%" : "70%",
-                    maxWidth: offset === 0 ? "700px" : "400px",
-                  }}
-                >
-                  <div className="relative w-full h-full rounded-[16px] overflow-hidden shadow-2xl">
-                    {renderMedia(item)}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
+          return (
+            <motion.div
+              key={index}
+              className="absolute flex items-center justify-center"
+              initial={{
+                x: `${offset * 100}%`,
+                scale: offset === 0 ? 1 : 0.85,
+                opacity: offset === 0 ? 1 : 0.6,
+                zIndex: offset === 0 ? 10 : 5,
+              }}
+              animate={{
+                x: `${offset * 100}%`,
+                scale: offset === 0 ? 1 : 0.85,
+                opacity: offset === 0 ? 1 : 0.6,
+                zIndex: offset === 0 ? 10 : 5,
+              }}
+              transition={{
+                duration: 0.6,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              style={{
+                width: offset === 0 ? "90%" : "70%",
+                maxWidth: offset === 0 ? "700px" : "400px",
+              }}
+            >
+              <div className="relative w-full h-full rounded-[16px] overflow-hidden shadow-2xl">
+                {renderMedia(item)}
+              </div>
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
+    </div>
+  </div>
 
-        {/* BOTÓN DERECHO */}
-        <motion.button
-          onClick={handleNextClick}
-         <motion.button
-  onClick={handleNextClick}
-  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full bg-white/90 p-3 rounded-full shadow-lg z-50"
->
-  <ChevronRight />
-</motion.button>
+  {/* INDICADORES */}
+  <div className="flex justify-center gap-2 mt-8">
+    {carouselMedia.map((_, index) => (
+      <motion.button
+        key={index}
+        onClick={() => goToSlide(index)}
+        className="h-[8px] rounded-full"
+        animate={{
+          width: currentIndex === index ? "28px" : "8px",
+          backgroundColor:
+            currentIndex === index
+              ? "#faf7fa"
+              : "rgba(255,255,255,0.5)",
+        }}
+        transition={{ duration: 0.3 }}
+      />
+    ))}
+  </div>
+</motion.div>
 
-
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <ChevronRight className="w-6 h-6 text-[#452746]" />
-        </motion.button>
-      </div>
-
-      {/* INDICADORES */}
-      <div className="flex justify-center gap-2 mt-8">
-        {carouselMedia.map((_, index) => (
-          <motion.button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className="h-[8px] rounded-full"
-            animate={{
-              width: currentIndex === index ? "28px" : "8px",
-              backgroundColor:
-                currentIndex === index
-                  ? "#faf7fa"
-                  : "rgba(255,255,255,0.5)",
-            }}
-            transition={{ duration: 0.3 }}
-          />
-        ))}
-      </div>
-    </motion.div>
-  );
-}
 
 
 const GOOGLE_MAPS_URL =
