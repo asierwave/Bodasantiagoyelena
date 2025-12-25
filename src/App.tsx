@@ -447,8 +447,8 @@ function PhotoCarousel() {
         {/* BOTÓN IZQUIERDO */}
         <motion.button
           onClick={handlePrevClick}
-          className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2
-                     bg-white/90 p-3 rounded-full shadow-lg z-30"
+         className="absolute left-4 md:left-10 top-[45%] -translate-y-1/2
+           bg-white/90 p-3 rounded-full shadow-lg z-30"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -499,8 +499,9 @@ function PhotoCarousel() {
         {/* BOTÓN DERECHO */}
         <motion.button
           onClick={handleNextClick}
-          className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2
-                     bg-white/90 p-3 rounded-full shadow-lg z-30"
+          className="absolute right-4 md:right-10 top-[45%] -translate-y-1/2
+           bg-white/90 p-3 rounded-full shadow-lg z-30"
+
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
