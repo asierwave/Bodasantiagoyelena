@@ -1157,9 +1157,9 @@ export default function App() {
     <div className="content-stretch flex flex-col items-start relative size-full bg-white">
       <AnimatedHeader />
       <PhotoCarousel />
+       <ProgramaBodaSection />
       <CeremonySection />
       <BanqueteSection />
-       <ProgramaBodaSection />
       <RSVPForm />
       <Footer />
     </div>
