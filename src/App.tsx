@@ -440,12 +440,23 @@ function PhotoCarousel() {
     <motion.div
       id="carousel"
       style={{ opacity, scale }}
-      className="relative w-full py-[80px] md:py-[120px] overflow-hidden z-20"
+      className="relative w-full py-[80px] md:py-[120px] z-20"
     >
-      {/* CONTENEDOR GENERAL */}
-      <div className="relative w-full h-[400px] md:h-[600px] flex justify-center">
-        {/* WRAPPER DEL CARRUSEL */}
-        <div className="relative w-full max-w-[900px] h-full">
+      {/* CONTENEDOR PRINCIPAL */}
+      <div className="relative w-full flex justify-center">
+        {/* BOTÓN IZQUIERDO (FUERA DEL CARRUSEL) */}
+        <motion.button
+          onClick={handlePrevClick}
+          className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2
+                     bg-white/90 p-3 rounded-full shadow-lg z-30"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <ChevronLeft className="w-6 h-6 text-[#452746]" />
+        </motion.button>
+
+        {/* CARRUSEL */}
+        <div className="relative w-full max-w-[900px] h-[400px] md:h-[600px] overflow-hidden">
           <AnimatePresence initial={false} mode="popLayout">
             {getVisibleItems().map(({ index, offset }) => {
               const item = carouselMedia[index];
@@ -482,29 +493,18 @@ function PhotoCarousel() {
               );
             })}
           </AnimatePresence>
-
-          {/* BOTÓN IZQUIERDO */}
-          <motion.button
-            onClick={handlePrevClick}
-            className="absolute left-0 top-1/2 -translate-y-1/2
-                       bg-white/90 p-3 rounded-full shadow-lg z-20"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <ChevronLeft className="w-6 h-6 text-[#452746]" />
-          </motion.button>
-
-          {/* BOTÓN DERECHO */}
-          <motion.button
-            onClick={handleNextClick}
-            className="absolute right-0 top-1/2 -translate-y-1/2
-                       bg-white/90 p-3 rounded-full shadow-lg z-20"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <ChevronRight className="w-6 h-6 text-[#452746]" />
-          </motion.button>
         </div>
+
+        {/* BOTÓN DERECHO (FUERA DEL CARRUSEL) */}
+        <motion.button
+          onClick={handleNextClick}
+          className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2
+                     bg-white/90 p-3 rounded-full shadow-lg z-30"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <ChevronRight className="w-6 h-6 text-[#452746]" />
+        </motion.button>
       </div>
 
       {/* INDICADORES */}
@@ -528,6 +528,7 @@ function PhotoCarousel() {
     </motion.div>
   );
 }
+
 
 
 const GOOGLE_MAPS_URL =
