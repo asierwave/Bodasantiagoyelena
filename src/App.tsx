@@ -443,8 +443,8 @@ function PhotoCarousel() {
       className="relative w-full py-[80px] md:py-[120px] z-20"
     >
       {/* CONTENEDOR PRINCIPAL */}
-      <div className="relative w-full flex justify-center">
-        {/* BOTÓN IZQUIERDO (FUERA DEL CARRUSEL) */}
+      <div className="relative w-full flex justify-center items-center">
+        {/* BOTÓN IZQUIERDO */}
         <motion.button
           onClick={handlePrevClick}
           className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2
@@ -456,7 +456,8 @@ function PhotoCarousel() {
         </motion.button>
 
         {/* CARRUSEL */}
-        <div className="relative w-full max-w-[900px] h-[400px] md:h-[600px] overflow-hidden">
+        <div className="relative w-full max-w-[900px] h-[400px] md:h-[600px]
+                        overflow-hidden flex items-center justify-center">
           <AnimatePresence initial={false} mode="popLayout">
             {getVisibleItems().map(({ index, offset }) => {
               const item = carouselMedia[index];
@@ -464,7 +465,7 @@ function PhotoCarousel() {
               return (
                 <motion.div
                   key={index}
-                  className="absolute"
+                  className="absolute flex items-center justify-center"
                   initial={{
                     x: `${offset * 100}%`,
                     scale: offset === 0 ? 1 : 0.85,
@@ -495,7 +496,7 @@ function PhotoCarousel() {
           </AnimatePresence>
         </div>
 
-        {/* BOTÓN DERECHO (FUERA DEL CARRUSEL) */}
+        {/* BOTÓN DERECHO */}
         <motion.button
           onClick={handleNextClick}
           className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2
@@ -528,7 +529,6 @@ function PhotoCarousel() {
     </motion.div>
   );
 }
-
 
 
 const GOOGLE_MAPS_URL =
