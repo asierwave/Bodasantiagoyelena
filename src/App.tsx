@@ -297,6 +297,23 @@ const scrollToSection = (sectionId: string) => {
   );
 }
 
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react"; // Asegúrate de tener esto o tu icono favorito
+
+// Definir tipos si usas TS (opcional)
+type CarouselItem = {
+  type: "video" | "image";
+  src: string;
+};
+
+// Datos de ejemplo para que no falle (puedes borrar esto si ya lo importas)
+const FALLBACK_MEDIA: CarouselItem[] = [
+  { type: "image", src: "https://via.placeholder.com/600x400/452746/fff" },
+  { type: "image", src: "https://via.placeholder.com/600x400/cfdddb/452746" },
+  { type: "image", src: "https://via.placeholder.com/600x400/333/fff" },
+];
+
 function PhotoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -306,18 +323,16 @@ function PhotoCarousel() {
   const timerRef = useRef<number | null>(null);
 
   /* ===============================
-     CARGA LOCAL
+      CARGA LOCAL
   =============================== */
-
   useEffect(() => {
     setCarouselMedia(FALLBACK_MEDIA);
     setIsLoading(false);
   }, []);
 
   /* ===============================
-     SLIDES
+      SLIDES LOGIC
   =============================== */
-
   const nextSlide = () => {
     if (carouselMedia.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % carouselMedia.length);
@@ -336,25 +351,21 @@ function PhotoCarousel() {
   };
 
   /* ===============================
-     AUTOPLAY
+      AUTOPLAY
   =============================== */
-
   const isCurrentVideo = carouselMedia[currentIndex]?.type === "video";
 
   useEffect(() => {
     if (!isAutoPlaying || isCurrentVideo) return;
-
     timerRef.current = window.setInterval(nextSlide, 12000);
-
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [isAutoPlaying, currentIndex, isCurrentVideo]);
 
   /* ===============================
-     CONTROLES
+      CONTROLES
   =============================== */
-
   const handlePrevClick = () => {
     setIsAutoPlaying(false);
     prevSlide();
@@ -366,39 +377,25 @@ function PhotoCarousel() {
   };
 
   /* ===============================
-     SCROLL ANIMATION
+      SCROLL ANIMATION
   =============================== */
-
   const { scrollYProgress } = useScroll();
-
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 1]
-  );
-
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [0.95, 1, 1, 1]
-  );
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 1]);
 
   /* ===============================
-     VISIBLES
+      VISIBLES
   =============================== */
-
   const getVisibleItems = () =>
     [-1, 0, 1].map((offset) => ({
       index:
-        (currentIndex + offset + carouselMedia.length) %
-        carouselMedia.length,
+        (currentIndex + offset + carouselMedia.length) % carouselMedia.length,
       offset,
     }));
 
   /* ===============================
-     MEDIA RENDER
+      MEDIA RENDER
   =============================== */
-
   const renderMedia = (item: CarouselItem) => {
     if (item.type === "video") {
       return (
@@ -413,21 +410,20 @@ function PhotoCarousel() {
         />
       );
     }
-
     return (
       <img
         src={item.src}
         loading="lazy"
         decoding="async"
+        alt="slide"
         className="w-full h-full object-cover"
       />
     );
   };
 
   /* ===============================
-     RENDER
+      RENDER PRINCIPAL
   =============================== */
-
   if (isLoading) {
     return (
       <div className="w-full h-[400px] md:h-[600px] flex items-center justify-center">
@@ -438,97 +434,104 @@ function PhotoCarousel() {
 
   return (
     <motion.div
-  id="carousel"
-  style={{ opacity, scale }}
-  className="relative w-full py-[80px] md:py-[120px] z-20"
->
-  {/* CONTENEDOR PRINCIPAL */}
-  <div className="relative w-full flex justify-center items-center">
-    {/* CARRUSEL */}
-    <div
-      className="relative w-full max-w-[900px] h-[400px] md:h-[600px]
-                  overflow-hidden flex items-center justify-center"
+      id="carousel"
+      style={{ opacity, scale }}
+      className="relative w-full py-[80px] md:py-[120px] z-20 flex flex-col items-center"
     >
-      {/* BOTÓN IZQUIERDO */}
-      <motion.button
-        onClick={handlePrevClick}
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 p-3 rounded-full shadow-lg z-50"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <ChevronLeft className="w-6 h-6 text-[#452746]" />
-      </motion.button>
+      {/* CONTENEDOR DEL ÁREA VISIBLE DEL CARRUSEL 
+         Usamos max-w-[1000px] (u otro valor) para que los botones 
+         se queden pegados a este bloque y no se vayan a los bordes de la pantalla.
+      */}
+      <div className="relative w-full max-w-[1100px] flex items-center justify-center px-4 md:px-12">
+        
+        {/* === BOTÓN IZQUIERDO === */}
+        <motion.button
+          onClick={handlePrevClick}
+          className="absolute left-2 md:left-4 z-50 p-3 bg-white/90 rounded-full shadow-lg backdrop-blur-sm cursor-pointer hover:bg-white text-[#452746]"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </motion.button>
 
-      {/* BOTÓN DERECHO */}
-      <motion.button
-        onClick={handleNextClick}
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 p-3 rounded-full shadow-lg z-50"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <ChevronRight className="w-6 h-6 text-[#452746]" />
-      </motion.button>
+        {/* === ZONA DE IMÁGENES === */}
+        <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden flex items-center justify-center">
+          <AnimatePresence initial={false} mode="popLayout">
+            {getVisibleItems().map(({ index, offset }) => {
+              const item = carouselMedia[index];
+              return (
+                <motion.div
+                  key={index}
+                  className="absolute flex items-center justify-center"
+                  initial={{
+                    x: `${offset * 100}%`,
+                    scale: offset === 0 ? 1 : 0.85,
+                    opacity: offset === 0 ? 1 : 0.6,
+                    zIndex: offset === 0 ? 10 : 5,
+                  }}
+                  animate={{
+                    x: `${offset * 100}%`,
+                    scale: offset === 0 ? 1 : 0.85,
+                    opacity: offset === 0 ? 1 : 0.6,
+                    zIndex: offset === 0 ? 10 : 5,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  style={{
+                    // Ajustamos el ancho para que la foto central sea grande
+                    // y deje espacio visual a los botones
+                    width: offset === 0 ? "100%" : "70%", 
+                    maxWidth: offset === 0 ? "800px" : "400px",
+                  }}
+                >
+                  <div className="relative w-full h-full rounded-[16px] overflow-hidden shadow-2xl">
+                    {renderMedia(item)}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
 
-      {/* SLIDES */}
-      <AnimatePresence initial={false} mode="popLayout">
-        {getVisibleItems().map(({ index, offset }) => {
-          const item = carouselMedia[index];
+        {/* === BOTÓN DERECHO === */}
+        <motion.button
+          onClick={handleNextClick}
+          className="absolute right-2 md:right-4 z-50 p-3 bg-white/90 rounded-full shadow-lg backdrop-blur-sm cursor-pointer hover:bg-white text-[#452746]"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </motion.button>
 
-          return (
-            <motion.div
-              key={index}
-              className="absolute flex items-center justify-center"
-              initial={{
-                x: `${offset * 100}%`,
-                scale: offset === 0 ? 1 : 0.85,
-                opacity: offset === 0 ? 1 : 0.6,
-                zIndex: offset === 0 ? 10 : 5,
-              }}
-              animate={{
-                x: `${offset * 100}%`,
-                scale: offset === 0 ? 1 : 0.85,
-                opacity: offset === 0 ? 1 : 0.6,
-                zIndex: offset === 0 ? 10 : 5,
-              }}
-              transition={{
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              style={{
-                width: offset === 0 ? "90%" : "70%",
-                maxWidth: offset === 0 ? "700px" : "400px",
-              }}
-            >
-              <div className="relative w-full h-full rounded-[16px] overflow-hidden shadow-2xl">
-                {renderMedia(item)}
-              </div>
-            </motion.div>
-          );
-        })}
-      </AnimatePresence>
-    </div>
-  </div>
+      </div>
 
-  {/* INDICADORES */}
-  <div className="flex justify-center gap-2 mt-8">
-    {carouselMedia.map((_, index) => (
-      <motion.button
-        key={index}
-        onClick={() => goToSlide(index)}
-        className="h-[8px] rounded-full"
-        animate={{
-          width: currentIndex === index ? "28px" : "8px",
-          backgroundColor:
-            currentIndex === index
-              ? "#faf7fa"
-              : "rgba(255,255,255,0.5)",
-        }}
-        transition={{ duration: 0.3 }}
-      />
-    ))}
-  </div>
-</motion.div>
+      {/* INDICADORES (PUNTITOS) ABAJO */}
+      <div className="flex justify-center gap-2 mt-8">
+        {carouselMedia.map((_, index) => (
+          <motion.button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className="h-[8px] rounded-full cursor-pointer"
+            animate={{
+              width: currentIndex === index ? "28px" : "8px",
+              backgroundColor:
+                currentIndex === index
+                  ? "#452746" // Cambié esto a un color oscuro para que se vea si el fondo es claro
+                  : "rgba(69, 39, 70, 0.3)",
+            }}
+            transition={{ duration: 0.3 }}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
 
+export default PhotoCarousel;
 
 
 const GOOGLE_MAPS_URL =
