@@ -297,75 +297,79 @@ const scrollToSection = (sectionId: string) => {
   );
 }
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // Asegúrate de tener esto o tu icono favorito
-
-// Definir tipos si usas TS (opcional)
-type CarouselItem = {
-  type: "video" | "image";
-  src: string;
-};
-
-// Datos de ejemplo para que no falle (puedes borrar esto si ya lo importas)
-const FALLBACK_MEDIA: CarouselItem[] = [
-  { type: "image", src: "https://via.placeholder.com/600x400/452746/fff" },
-  { type: "image", src: "https://via.placeholder.com/600x400/cfdddb/452746" },
-  { type: "image", src: "https://via.placeholder.com/600x400/333/fff" },
-];
-
 function PhotoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [carouselMedia, setCarouselMedia] = useState<CarouselItem[]>([]);
+  const [carouselImages, setCarouselImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [hasError, setHasError] = useState(false);
   const timerRef = useRef<number | null>(null);
 
-  /* ===============================
-      CARGA LOCAL
-  =============================== */
+  // Cargar imágenes desde Google Apps Script al montar el componente
   useEffect(() => {
-    setCarouselMedia(FALLBACK_MEDIA);
-    setIsLoading(false);
+    const fetchImages = async () => {
+      // Si el ID de carpeta no está configurado, usar imágenes de respaldo
+      if (GOOGLE_DRIVE_FOLDER_ID === "TU_FOLDER_ID_AQUI") {
+        console.log("Usando imágenes de respaldo - Google Drive no configurado");
+        setCarouselImages(FALLBACK_IMAGES);
+        setHasError(false);
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`${GOOGLE_APPS_SCRIPT_URL}?action=getImages&folderId=${GOOGLE_DRIVE_FOLDER_ID}`);
+        const data = await response.json();
+        
+        if (data.success && data.images && data.images.length > 0) {
+          setCarouselImages(data.images);
+          setHasError(false);
+        } else {
+          console.log("No se encontraron imágenes, usando imágenes de respaldo");
+          setCarouselImages(FALLBACK_IMAGES);
+          setHasError(false);
+        }
+      } catch (error) {
+        console.log("Error al cargar imágenes de Google Drive, usando imágenes de respaldo");
+        setCarouselImages(FALLBACK_IMAGES);
+        setHasError(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchImages();
   }, []);
 
-  /* ===============================
-      SLIDES LOGIC
-  =============================== */
   const nextSlide = () => {
-    if (carouselMedia.length === 0) return;
-    setCurrentIndex((prev) => (prev + 1) % carouselMedia.length);
+    if (carouselImages.length === 0) return;
+    setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
   };
 
   const prevSlide = () => {
-    if (carouselMedia.length === 0) return;
-    setCurrentIndex(
-      (prev) => (prev - 1 + carouselMedia.length) % carouselMedia.length
-    );
+    if (carouselImages.length === 0) return;
+    setCurrentIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
   };
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
-    setIsAutoPlaying(false);
   };
 
-  /* ===============================
-      AUTOPLAY
-  =============================== */
-  const isCurrentVideo = carouselMedia[currentIndex]?.type === "video";
-
+  // Auto-scroll cada 12 segundos
   useEffect(() => {
-    if (!isAutoPlaying || isCurrentVideo) return;
-    timerRef.current = window.setInterval(nextSlide, 12000);
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [isAutoPlaying, currentIndex, isCurrentVideo]);
+    if (isAutoPlaying) {
+      timerRef.current = setInterval(() => {
+        nextSlide();
+      }, 12000);
+    }
 
-  /* ===============================
-      CONTROLES
-  =============================== */
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [isAutoPlaying, currentIndex]);
+
   const handlePrevClick = () => {
     setIsAutoPlaying(false);
     prevSlide();
@@ -376,162 +380,230 @@ function PhotoCarousel() {
     nextSlide();
   };
 
-  /* ===============================
-      SCROLL ANIMATION
-  =============================== */
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 1]);
-  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 1]);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
 
-  /* ===============================
-      VISIBLES
-  =============================== */
-  const getVisibleItems = () =>
-    [-1, 0, 1].map((offset) => ({
-      index:
-        (currentIndex + offset + carouselMedia.length) % carouselMedia.length,
-      offset,
-    }));
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 0.95]);
 
-  /* ===============================
-      MEDIA RENDER
-  =============================== */
-  const renderMedia = (item: CarouselItem) => {
-    if (item.type === "video") {
-      return (
-        <video
-          src={item.src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="w-full h-full object-cover"
-        />
-      );
+  // Calcular los índices de las imágenes visibles
+  const getVisibleImages = () => {
+    const images = [];
+    for (let i = -1; i <= 1; i++) {
+      const index = (currentIndex + i + carouselImages.length) % carouselImages.length;
+      images.push({ index, offset: i });
     }
-    return (
-      <img
-        src={item.src}
-        loading="lazy"
-        decoding="async"
-        alt="slide"
-        className="w-full h-full object-cover"
-      />
-    );
+    return images;
   };
 
-  /* ===============================
-      RENDER PRINCIPAL
-  =============================== */
-  if (isLoading) {
-    return (
-      <div className="w-full h-[400px] md:h-[600px] flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-neutral-300 border-t-[#452746] rounded-full animate-spin" />
-      </div>
-    );
-  }
-
   return (
-    <motion.div
-      id="carousel"
-      style={{ opacity, scale }}
-      className="relative w-full py-[80px] md:py-[120px] z-20 flex flex-col items-center"
-    >
-      {/* CONTENEDOR DEL ÁREA VISIBLE DEL CARRUSEL 
-         Usamos max-w-[1000px] (u otro valor) para que los botones 
-         se queden pegados a este bloque y no se vayan a los bordes de la pantalla.
-      */}
-      <div className="relative w-full max-w-[1100px] flex items-center justify-center px-4 md:px-12">
-        
-        {/* === BOTÓN IZQUIERDO === */}
-        <motion.button
-          onClick={handlePrevClick}
-          className="absolute left-2 md:left-4 z-50 p-3 bg-white/90 rounded-full shadow-lg backdrop-blur-sm cursor-pointer hover:bg-white text-[#452746]"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </motion.button>
+<motion.div
+  id="carousel"
+  ref={ref}
+  style={{
+    overflow:'hidden'
+  }}
+  className="relative w-full py-[80px] md:py-[120px]
+             overflow-x-hidden overflow-y-visible
+             z-20 -mb-[60px] md:-mb-[100px]
+             bg-[#452746] md:bg-gradient-to-b md:from-white md:via-[#faf7fa] md:to-white"
+>
 
-        {/* === ZONA DE IMÁGENES === */}
-        <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden flex items-center justify-center">
-          <AnimatePresence initial={false} mode="popLayout">
-            {getVisibleItems().map(({ index, offset }) => {
-              const item = carouselMedia[index];
-              return (
-                <motion.div
-                  key={index}
-                  className="absolute flex items-center justify-center"
-                  initial={{
-                    x: `${offset * 100}%`,
-                    scale: offset === 0 ? 1 : 0.85,
-                    opacity: offset === 0 ? 1 : 0.6,
-                    zIndex: offset === 0 ? 10 : 5,
-                  }}
-                  animate={{
-                    x: `${offset * 100}%`,
-                    scale: offset === 0 ? 1 : 0.85,
-                    opacity: offset === 0 ? 1 : 0.6,
-                    zIndex: offset === 0 ? 10 : 5,
-                  }}
-                  transition={{
-                    duration: 0.6,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  style={{
-                    // Ajustamos el ancho para que la foto central sea grande
-                    // y deje espacio visual a los botones
-                    width: offset === 0 ? "100%" : "70%", 
-                    maxWidth: offset === 0 ? "800px" : "400px",
-                  }}
-                >
-                  <div className="relative w-full h-full rounded-[16px] overflow-hidden shadow-2xl">
-                    {renderMedia(item)}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
+
+      {/* Estado de carga */}
+      {isLoading && (
+        <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-[#faf7fa]/20 border-t-[#faf7fa] rounded-full animate-spin" />
+            <p className="font-['Roboto_Slab',serif] text-[#452746] text-[18px] md:text-[20px]">
+              Cargando fotos...
+            </p>
+          </div>
         </div>
+      )}
 
-        {/* === BOTÓN DERECHO === */}
-        <motion.button
-          onClick={handleNextClick}
-          className="absolute right-2 md:right-4 z-50 p-3 bg-white/90 rounded-full shadow-lg backdrop-blur-sm cursor-pointer hover:bg-white text-[#452746]"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Next slide"
+      {/* Carrousel - se muestra cuando no está cargando y hay imágenes */}
+      {!isLoading && carouselImages.length > 0 && (
+        <>
+          <div className="relative w-full h-[400px] md:h-[600px]">
+            {/* Contenedor de imágenes */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <AnimatePresence initial={false} mode="popLayout">
+                {getVisibleImages().map(({ index, offset }) => (
+                  <motion.div
+                    key={index}
+                    className="absolute"
+                    initial={{
+                      x: `${offset * 100}%`,
+                      scale: offset === 0 ? 1 : 0.85,
+                      opacity: 1,
+                      zIndex: offset === 0 ? 10 : 5,
+                    }}
+                    animate={{
+                      x: `${offset * 100}%`,
+                      scale: offset === 0 ? 1 : 0.85,
+                      opacity: 1,
+                      zIndex: offset === 0 ? 10 : 5,
+                    }}
+                    exit={{
+                      opacity: 0,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    style={{
+                      width: offset === 0 ? '90%' : '75%',
+                      maxWidth: offset === 0 ? '60%' : '100px',
+                    }}
+                    className="md:block hidden"
+                  >
+                    <div 
+                      className="relative w-full h-[600px] rounded-[16px] overflow-hidden shadow-2xl"
+                      style={{
+                        filter: offset === 0 ? 'none' : 'brightness(0.7)',
+                      }}
+                    >
+                      <img
+                        src={carouselImages[index]}
+                        alt={`Foto ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div 
+                      className="absolute inset-0 from-transparent via-transparent to-black/20"/>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* Vista móvil */}
+               <div className="md:hidden relative w-full h-[400px] flex items-center justify-center"
+               style={{
+                width:'80%'
+               }}>
+  <AnimatePresence initial={false} mode="popLayout">
+    {getVisibleImages().map(({ index, offset }) => (
+      <motion.div
+        key={index}
+        className="absolute"
+        initial={{
+          x: `${offset * 90}%`,
+          scale: offset === 0 ? 1 : 0.8,
+          opacity: offset === 0 ? 1 : 0.5,
+          zIndex: offset === 0 ? 10 : 5,
+        }}
+        animate={{
+          x: `${offset * 90}%`,
+          scale: offset === 0 ? 1 : 0.8,
+          opacity: offset === 0 ? 1 : 0.5,
+          zIndex: offset === 0 ? 10 : 5,
+        }}
+        exit={{
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        style={{
+          width: offset === 0 ? '100%' : '80%',
+          height: '90%',
+        }}
+      >
+        <div 
+          className="relative w-full h-full rounded-[12px] overflow-hidden shadow-xl"
+          style={{
+            filter: offset === 0 ? 'none' : 'brightness(0.6)',
+          }}
         >
-          <ChevronRight className="w-6 h-6" />
-        </motion.button>
-
-      </div>
-
-      {/* INDICADORES (PUNTITOS) ABAJO */}
-      <div className="flex justify-center gap-2 mt-8">
-        {carouselMedia.map((_, index) => (
-          <motion.button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className="h-[8px] rounded-full cursor-pointer"
-            animate={{
-              width: currentIndex === index ? "28px" : "8px",
-              backgroundColor:
-                currentIndex === index
-                  ? "#452746" // Cambié esto a un color oscuro para que se vea si el fondo es claro
-                  : "rgba(69, 39, 70, 0.3)",
-            }}
-            transition={{ duration: 0.3 }}
+          <img
+            src={carouselImages[index]}
+            alt={`Foto ${index + 1}`}
+            className="w-full h-full object-cover"
+            loading="lazy"
           />
-        ))}
-      </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+        </div>
+      </motion.div>
+    ))}
+  </AnimatePresence>
+</div>
+
+            </div>
+
+            {/* Botones de navegación */}
+            <motion.button
+              onClick={handlePrevClick}
+              className="absolute left-[10px] md:left-[40px] top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white p-3 md:p-4 rounded-full shadow-lg cursor-pointer transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Foto anterior"
+            >
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#452746]" />
+            </motion.button>
+
+            <motion.button
+              onClick={handleNextClick}
+              className="absolute right-[10px] md:right-[40px] top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white p-3 md:p-4 rounded-full shadow-lg cursor-pointer transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Siguiente foto"
+            >
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#452746]" />
+            </motion.button>
+
+            {/* Indicadores de posición */}
+            <div style={{
+    top: window.innerWidth >= 768 ? '620px' : '400px',
+  }} className="absolute left-1/2 -translate-x-1/2 z-20 flex gap-2">
+              {carouselImages.map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => {
+                    setIsAutoPlaying(false);
+                    goToSlide(index);
+                  }}
+                  className="cursor-pointer"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={`Ir a foto ${index + 1}`}
+                >
+                  <motion.div
+                    className="rounded-full"
+                    animate={{
+                      width: currentIndex === index ? '32px' : '8px',
+                      height: '8px',
+                      backgroundColor: currentIndex === index ? '#faf7fa' : 'rgba(100, 100, 100, 0.7)',
+                    }}
+                 
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* Texto decorativo */}
+          <motion.div
+            className="text-center mt-[40px] md:mt-[40px] px-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <p className="font-['Roboto_Slab',serif] font-light italic text-neutral-100 text-[32px] md:text-[44px] lg:text-[50px]">
+              Galería fotos
+            </p>
+          </motion.div>
+        </>
+      )}
     </motion.div>
   );
 }
-
-export default PhotoCarousel;
 
 
 const GOOGLE_MAPS_URL =
