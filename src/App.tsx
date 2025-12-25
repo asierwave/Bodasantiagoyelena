@@ -306,7 +306,7 @@ function PhotoCarousel() {
   const timerRef = useRef<number | null>(null);
 
   /* ===============================
-     CARGA LOCAL (SIN FETCH)
+     CARGA LOCAL
   =============================== */
 
   useEffect(() => {
@@ -325,7 +325,9 @@ function PhotoCarousel() {
 
   const prevSlide = () => {
     if (carouselMedia.length === 0) return;
-    setCurrentIndex((prev) => (prev - 1 + carouselMedia.length) % carouselMedia.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + carouselMedia.length) % carouselMedia.length
+    );
   };
 
   const goToSlide = (index: number) => {
@@ -334,7 +336,7 @@ function PhotoCarousel() {
   };
 
   /* ===============================
-     AUTOPLAY (NO VIDEO)
+     AUTOPLAY
   =============================== */
 
   const isCurrentVideo = carouselMedia[currentIndex]?.type === "video";
@@ -366,24 +368,32 @@ function PhotoCarousel() {
   /* ===============================
      SCROLL ANIMATION
   =============================== */
-const { scrollYProgress } = useScroll();
 
+  const { scrollYProgress } = useScroll();
 
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 1]
+  );
 
-const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 1]);
-const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 1]);
-
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0.95, 1, 1, 1]
+  );
 
   /* ===============================
      VISIBLES
   =============================== */
 
-  const getVisibleItems = () => {
-    return [-1, 0, 1].map((offset) => ({
-      index: (currentIndex + offset + carouselMedia.length) % carouselMedia.length,
+  const getVisibleItems = () =>
+    [-1, 0, 1].map((offset) => ({
+      index:
+        (currentIndex + offset + carouselMedia.length) %
+        carouselMedia.length,
       offset,
     }));
-  };
 
   /* ===============================
      MEDIA RENDER
@@ -430,70 +440,71 @@ const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 1]);
     <motion.div
       id="carousel"
       style={{ opacity, scale }}
-      className="relative w-full py-[80px] md:py-[120px]
-                 overflow-hidden z-20"
+      className="relative w-full py-[80px] md:py-[120px] overflow-hidden z-20"
     >
-     <div className="relative w-full h-[400px] md:h-[600px] flex justify-center">
-      
-      <div className="relative w-full max-w-[900px] h-full">
+      {/* CONTENEDOR GENERAL */}
+      <div className="relative w-full h-[400px] md:h-[600px] flex justify-center">
+        {/* WRAPPER DEL CARRUSEL */}
+        <div className="relative w-full max-w-[900px] h-full">
+          <AnimatePresence initial={false} mode="popLayout">
+            {getVisibleItems().map(({ index, offset }) => {
+              const item = carouselMedia[index];
 
-        <AnimatePresence initial={false} mode="popLayout">
-          {getVisibleItems().map(({ index, offset }) => {
-            const item = carouselMedia[index];
+              return (
+                <motion.div
+                  key={index}
+                  className="absolute"
+                  initial={{
+                    x: `${offset * 100}%`,
+                    scale: offset === 0 ? 1 : 0.85,
+                    opacity: offset === 0 ? 1 : 0.6,
+                    zIndex: offset === 0 ? 10 : 5,
+                  }}
+                  animate={{
+                    x: `${offset * 100}%`,
+                    scale: offset === 0 ? 1 : 0.85,
+                    opacity: offset === 0 ? 1 : 0.6,
+                    zIndex: offset === 0 ? 10 : 5,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  style={{
+                    width: offset === 0 ? "90%" : "70%",
+                    maxWidth: offset === 0 ? "700px" : "400px",
+                  }}
+                >
+                  <div className="relative w-full h-full rounded-[16px] overflow-hidden shadow-2xl">
+                    {renderMedia(item)}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
 
-            return (
-              <motion.div
-                key={index}
-                className="absolute"
-                initial={{
-                  x: `${offset * 100}%`,
-                  scale: offset === 0 ? 1 : 0.85,
-                  opacity: offset === 0 ? 1 : 0.6,
-                  zIndex: offset === 0 ? 10 : 5,
-                }}
-                animate={{
-                  x: `${offset * 100}%`,
-                  scale: offset === 0 ? 1 : 0.85,
-                  opacity: offset === 0 ? 1 : 0.6,
-                  zIndex: offset === 0 ? 10 : 5,
-                }}
-                transition={{
-                  duration: 0.6,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                style={{
-                  width: offset === 0 ? "90%" : "70%",
-                  maxWidth: offset === 0 ? "700px" : "400px",
-                }}
-              >
-                <div className="relative w-full h-full rounded-[16px] overflow-hidden shadow-2xl">
-                  {renderMedia(item)}
-                </div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
+          {/* BOTÓN IZQUIERDO */}
+          <motion.button
+            onClick={handlePrevClick}
+            className="absolute left-0 top-1/2 -translate-y-1/2
+                       bg-white/90 p-3 rounded-full shadow-lg z-20"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ChevronLeft className="w-6 h-6 text-[#452746]" />
+          </motion.button>
 
-        {/* CONTROLES */}
-        <motion.button
-          onClick={handlePrevClick}
-          className="absolute left-4 top-1/2 -translate-y-1/2
-                     bg-white/90 p-3 rounded-full shadow-lg z-20"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <ChevronLeft className="w-6 h-6 text-[#452746]" />
-        </motion.button>
-
-        <motion.button
-          onClick={handleNextClick}
-          className="absolute right-4 top-1/2 -translate-y-1/2
-                     bg-white/90 p-3 rounded-full shadow-lg z-20"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <ChevronRight className="w-6 h-6 text-[#452746]" />
-        </motion.button>
+          {/* BOTÓN DERECHO */}
+          <motion.button
+            onClick={handleNextClick}
+            className="absolute right-0 top-1/2 -translate-y-1/2
+                       bg-white/90 p-3 rounded-full shadow-lg z-20"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ChevronRight className="w-6 h-6 text-[#452746]" />
+          </motion.button>
+        </div>
       </div>
 
       {/* INDICADORES */}
@@ -506,7 +517,9 @@ const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 1]);
             animate={{
               width: currentIndex === index ? "28px" : "8px",
               backgroundColor:
-                currentIndex === index ? "#faf7fa" : "rgba(255,255,255,0.5)",
+                currentIndex === index
+                  ? "#faf7fa"
+                  : "rgba(255,255,255,0.5)",
             }}
             transition={{ duration: 0.3 }}
           />
@@ -515,6 +528,7 @@ const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 1]);
     </motion.div>
   );
 }
+
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=Ermita+de+la+Virgen+del+Puerto&destination_place_id=ChIJFZMU8HQoQg0REkK5D53WAU4";
