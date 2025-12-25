@@ -754,6 +754,10 @@ function BanqueteSection() {
         <p className="font-bold text-[18px] md:text-[20px] lg:text-[22px]">
           Casa de Burgos
         </p>
+
+        <p className="font-bold text-[18px] md:text-[20px] lg:text-[22px]">
+          Casa de Burgos, C. Principal de Provincias, 3, 28011, Madrid
+        </p>
       </motion.div>
 
       {/* IMAGEN - Le bajamos el Z-Index para asegurar que no tape nada */}
