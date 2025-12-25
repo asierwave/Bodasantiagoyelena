@@ -434,6 +434,8 @@ const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 1]);
                  overflow-hidden z-20"
     >
       <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center">
+      <div className="relative w-full max-w-[900px] h-full">
+
         <AnimatePresence initial={false} mode="popLayout">
           {getVisibleItems().map(({ index, offset }) => {
             const item = carouselMedia[index];
@@ -512,9 +514,6 @@ const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 1]);
     </motion.div>
   );
 }
-
-
-
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=Ermita+de+la+Virgen+del+Puerto&destination_place_id=ChIJFZMU8HQoQg0REkK5D53WAU4";
@@ -1126,12 +1125,12 @@ export default function App() {
 
             <AnimatedHeader />
 
-            <ProgramaBodaSection />
-
-      <CeremonySection />
-       <BanqueteSection />
-        <RSVPForm />
+      <ProgramaBodaSection />
       <PhotoCarousel />
+      <CeremonySection />
+      <BanqueteSection />
+      <RSVPForm />
+      
       <Footer />
     </div>
   );
